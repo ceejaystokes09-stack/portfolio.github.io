@@ -1,0 +1,1193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <script src="https://kit.fontawesome.com/304058e96a.js" crossorigin="anonymous"></script>
+    <title>Ceejay's Portfolio</title>
+</head>
+<style>
+    *{
+    margin: 0;
+    box-sizing: border-box;
+}
+
+:root{
+    --ink: #17212b;
+    --muted: #5d6a72;
+    --paper: #f7f5ef;
+    --surface: #ffffff;
+    --line: #d8dcd7;
+    --accent: #e76f51;
+    --accent-dark: #b94d35;
+    --teal: #1f6f78;
+    --navy: #17324d;
+    --shadow: 0 18px 45px rgba(23, 50, 77, 0.12);
+}
+
+body{
+    min-width: 320px;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+h1, h2, h3{
+    color: var(--navy);
+    line-height: 1.15;
+}
+
+p{
+    max-width: 70ch;
+}
+
+.top-nav span {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease-in;
+}
+
+.top-nav div:hover > span,
+.top-nav li:hover > span {
+    opacity: 1;
+    visibility: visible;
+}
+
+.top-nav{
+    height:50px;
+    position: sticky;
+    top: 0;
+
+    background: radial-gradient(circle at bottom, #ffffff,#ffffff,#fff, #c2bfbfff, #c4baba);
+
+
+    display: flex;
+
+    justify-content: space-around;
+    text-align: center;
+
+    border-bottom: black solid 2px;
+
+    box-shadow: -2px 5px 12px 1px rgba(0,0,0,0.72);
+    -webkit-box-shadow: -2px 5px 12px 1px rgba(0,0,0,0.72);
+    -moz-box-shadow: -2px 5px 12px 1px rgba(0,0,0,0.72);
+}
+
+.top-nav div{
+    width:20%;
+    display:flex;
+    align-items: center;
+    
+
+}
+.top-nav ul, 
+.top-nav li{
+    width: 80%;
+    display:flex;
+    align-items: start;
+    justify-content: space-around;
+    list-style-type: none ;
+}
+
+/*handle the span text to load on hover of the parent divs*/
+
+.top-nav div:hover > span,
+.top-nav li:hover > span {
+    display: block;
+    opacity: 1;
+}
+.mega-link{
+    position: relative;
+}
+
+.gateway-menu{
+    display:none;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.2s ease-in-out;
+}
+
+.mega-link:hover .gateway-menu,
+.mega-link:focus-within .gateway-menu{
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    width: max-content;
+    height: max-content;
+    opacity: 1;
+    visibility: visible;
+
+}
+
+.gateway-menu{
+
+    justify-content: space-around;
+    flex-direction: column;
+    width: max-content;
+    height: max-content;
+    display:none; 
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1;
+    gap: 5px;
+    background-color: #e9e8e8;
+    border: solid 2px grey;
+    border-radius: 1em;
+
+    box-shadow: -1px 0px 63px -1px rgba(0,0,0,0.72);
+    -webkit-box-shadow: -1px 0px 63px -1px rgba(0,0,0,0.72);
+    -moz-box-shadow: -1px 0px 63px -1px rgba(0,0,0,0.72);
+
+    padding: min(1rem, 90%);
+
+}
+
+.gateway-menu .change-page{
+    background: radial-gradient(circle at 30% 10%, #8005e4, #9d02c4, #60018b );
+    transition: all 0.3s ease-in;
+    border: solid 2px #31013d; 
+    border-radius: 1em;
+    width: calc(max-content + 20px);
+    color: #fff; 
+    padding: 2px 10px ;
+    transition: all ease 0.5s;
+
+}
+
+.gateway-menu .change-page:hover{
+    background-color: radial-gradient(circle at 30% 10%, #952ceb, #ac16d1, #72149e );
+    scale:1.1; 
+    box-shadow: -1px 0px 39px 14px rgba(0,0,0,0.72);
+    -webkit-box-shadow: -1px 0px 39px 14px rgba(0,0,0,0.72);
+    -moz-box-shadow: -1px 0px 39px 14px rgba(0,0,0,0.72);
+}
+
+
+.circle{
+    width:50px;
+    height:50px;
+    border-radius: 50%;
+
+    background-color: red;
+}
+
+.big{
+    width:150px;
+    height: 150px;
+}
+
+.hero-image {
+    display: flex;
+    flex: 1 1 320px;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: min(100%, 400px);
+    max-width: 400px;
+    min-width: 0;
+}
+
+
+.side-nav-shell{
+    position: fixed;
+    top: 50px;
+    left: 0;
+    z-index: 2;
+    transform: translateX(calc(-100% + 52px));
+    transition: transform 0.3s ease-in-out;
+}
+
+.side-nav-shell.is-open{
+    transform: translateX(0);
+}
+
+.open-side{
+    border: 0;
+    cursor: pointer;
+    position: absolute;
+    top: 20px;
+    right: -52px;
+    color: rgb(209, 206, 206);
+    width: 52px;
+    height: 52px;
+    background: #8005e4;
+    border: 2px solid #fff;
+    border-left: 0;
+    border-radius: 0 12px 12px 0;
+    box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.35);
+}
+
+.open-side:hover{
+    background: #9d02c4;
+}
+
+.open-side:focus-visible{
+    outline: 3px solid #ffd166;
+    outline-offset: 3px;
+}
+
+.open-side .fa-xmark{
+    display: none;
+}
+
+.side-nav-shell.is-open .open-side .fa-bars{
+    display: none;
+}
+
+.side-nav-shell.is-open .open-side .fa-xmark{
+    display: inline-block;
+}
+
+.side-nav{
+    width: 240px;
+    min-height: calc(100vh - 50px);
+    padding: 30px 20px;
+    background: #242424;
+    color: #fff;
+}
+
+.side-nav h2{
+    margin-bottom: 20px;
+}
+
+.side-nav nav{
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.side-nav a{
+    color: #fff;
+    text-decoration: none;
+    padding: 8px 10px;
+    border-radius: 6px;
+}
+
+.side-nav a:hover,
+.side-nav a:focus-visible{
+    background: #8005e4;
+}
+
+html{
+    scroll-behavior: smooth;
+    scroll-padding-top: 60px;
+}
+
+.page-section{
+    min-height: 45vh;
+    padding: 10px 10%;
+    margin-left: 100px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+.page-section h1{
+    margin-bottom: 20px;
+}
+
+.box{
+    border:solid 2px black;
+    border-radius: 1em;
+    box-shadow: 1px -2px 53px -1px rgba(0,0,0,0.7);
+    -webkit-box-shadow: 1px -2px 53px -1px rgba(0,0,0,0.7);
+    -moz-box-shadow: 1px -2px 53px -1px rgba(0,0,0,0.7);
+}
+
+.hero{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100%;
+    max-width: 1100px;
+    min-height: 450px;
+    height: auto;
+    margin: 0 auto;
+    padding: clamp(20px, 4vw, 40px);
+    gap: clamp(24px, 5vw, 56px);
+    overflow: hidden;
+
+}
+
+
+.hero-details{
+    display: flex;
+    flex: 1 1 320px;
+    align-items: center;
+    min-width: 0;
+    min-height: 0;
+}
+
+.hero-details p{
+    height: auto;
+    overflow-wrap: anywhere;
+}
+
+@media (max-width: 700px){
+    .page-section{
+        margin-left: 0;
+        padding: 16px;
+    }
+
+    .hero{
+        min-height: 0;
+        padding: 24px 16px;
+    }
+
+    .hero-image,
+    .hero-details{
+        flex-basis: 100%;
+    }
+}
+
+/* Responsive visual system */
+body{
+    background:
+        radial-gradient(circle at 12% 8%, rgba(231, 111, 81, 0.12), transparent 28rem),
+        linear-gradient(180deg, #fbfaf6 0%, var(--paper) 48%, #eef3ef 100%);
+}
+
+.top-nav{
+    z-index: 10;
+    width: 100%;
+    min-height: 68px;
+    height: auto;
+    padding: 12px clamp(16px, 5vw, 72px);
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    background: rgba(255, 255, 255, 0.88);
+    border-bottom: 1px solid var(--line);
+    box-shadow: 0 8px 24px rgba(23, 50, 77, 0.08);
+    backdrop-filter: blur(14px);
+}
+
+.top-nav > div,
+.top-nav #nav-center{
+    width: auto;
+}
+
+.top-nav > div:first-child{
+    flex: 1 1 auto;
+    justify-content: flex-start;
+}
+
+.top-nav h3{
+    font-size: clamp(1rem, 2vw, 1.35rem);
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+}
+
+.top-nav ul,
+.top-nav li{
+    width: auto;
+    align-items: center;
+    gap: 10px;
+}
+
+.top-nav ul{
+    gap: clamp(16px, 3vw, 32px);
+}
+
+.top-nav li{
+    position: relative;
+    color: var(--navy);
+    cursor: pointer;
+}
+
+.top-nav .github-link{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 44px;
+    min-height: 44px;
+    color: inherit;
+    text-decoration: none;
+}
+
+.top-nav .github-link:focus-visible{
+    outline: 3px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: 6px;
+}
+
+.top-nav span,
+.top-nav div:hover > span,
+.top-nav li:hover > span{
+    display: inline;
+    opacity: 1;
+    visibility: visible;
+}
+
+.top-nav li span,
+.top-nav > div:last-child span{
+    color: var(--muted);
+    font-size: 0.8rem;
+    font-weight: 700;
+}
+
+.top-nav > div:last-child{
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.gateway-menu{
+    top: calc(100% + 16px);
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(310px, calc(100vw - 32px));
+    padding: 18px;
+    gap: 12px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+}
+
+.gateway-menu h2{
+    font-size: 1rem;
+}
+
+.gateway-menu select,
+.gateway-menu .change-page{
+    width: 100%;
+    min-height: 42px;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font: inherit;
+}
+
+.gateway-menu select{
+    border: 1px solid var(--line);
+    background: #fff;
+    color: var(--ink);
+}
+
+.gateway-menu .change-page{
+    border: 0;
+    background: var(--accent);
+    color: #fff;
+    cursor: pointer;
+    font-weight: 700;
+}
+
+.gateway-menu .change-page:hover{
+    background: var(--accent-dark);
+    scale: 1;
+    box-shadow: none;
+}
+
+.side-nav-shell{
+    top: 68px;
+    transform: translateX(-91%);
+}
+
+
+.line{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    border-bottom: gray 2px solid;
+}
+
+.line p{
+    position: absolute;
+    top:0px
+}
+
+::selection{
+    background-color: #e9e8e8;
+    color: black;
+}
+
+.side-nav{
+    width: min(280px, calc(100vw - 32px));
+    min-height: calc(100vh - 68px);
+    padding: 32px 22px;
+    background: var(--navy);
+    box-shadow: 12px 0 32px rgba(23, 50, 77, 0.2);
+}
+
+.side-nav h2{
+    margin-bottom: 24px;
+    color: #fff;
+    font-size: 1.35rem;
+}
+
+.side-nav a{
+    color: #dce8e5;
+    border-radius: 8px;
+    font-weight: 700;
+}
+
+.side-nav a:hover,
+.side-nav a:focus-visible{
+    background: var(--teal);
+}
+
+.open-side{
+    top: 24px;
+    right: -48px;
+    width: 48px;
+    height: 48px;
+    background: var(--accent);
+    border: 0;
+    border-radius: 0 10px 10px 0;
+}
+
+.open-side:hover{
+    background: var(--accent-dark);
+}
+
+main{
+    width: 100%;
+}
+
+.page-section{
+    width: min(100%, 1280px);
+    min-height: 48vh;
+    margin: 0 auto;
+    padding: clamp(44px, 8vw, 96px) clamp(16px, 6vw, 72px);
+    gap: 24px;
+}
+
+.page-section h1{
+    margin-bottom: 0;
+    font-size: clamp(2rem, 5vw, 4rem);
+    letter-spacing: -0.02em;
+}
+
+.page-section > p{
+    color: var(--muted);
+    font-size: clamp(1rem, 2vw, 1.2rem);
+}
+
+.page-section:not(#home){
+    min-height: 38vh;
+    border-top: 1px solid rgba(216, 220, 215, 0.8);
+}
+
+.box{
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    box-shadow: var(--shadow);
+}
+
+.hero{
+    align-self: center;
+    min-height: 430px;
+    padding: clamp(24px, 5vw, 56px);
+    background: rgba(255, 255, 255, 0.82);
+    gap: clamp(28px, 7vw, 88px);
+}
+
+.hero-image{
+    flex: 1 1 280px;
+    width: min(100%, 380px);
+    max-width: 380px;
+    gap: 20px;
+    color: var(--muted);
+}
+
+.hero-image ul{
+    width: 100%;
+    padding-left: 22px;
+}
+
+.hero-image li::marker{
+    color: var(--accent);
+}
+
+.circle.big{
+    width: clamp(120px, 18vw, 170px);
+    height: clamp(120px, 18vw, 170px);
+    background: radial-gradient(circle at 35% 30%, #f4b183, var(--accent) 48%, var(--accent-dark));
+    border: 10px solid #fff;
+    box-shadow: 0 0 0 1px rgba(231, 111, 81, 0.25), 0 14px 28px rgba(185, 77, 53, 0.2);
+}
+
+.hero-details{
+    flex: 1 1 360px;
+    min-height: 0;
+    padding: clamp(0px, 2vw, 20px);
+}
+
+.hero-details p{
+    color: var(--muted);
+    font-size: clamp(1rem, 1.5vw, 1.15rem);
+    line-height: 1.8;
+}
+
+@media (max-width: 700px){
+    .top-nav{
+        gap: 12px;
+        padding: 12px 16px;
+    }
+
+    .top-nav h3{
+        font-size: 1rem;
+    }
+
+    .top-nav ul{
+        gap: 14px;
+    }
+
+    .top-nav li span,
+    .top-nav > div:last-child span{
+        display: none;
+    }
+
+    .top-nav > div:last-child{
+        flex: 0 0 auto;
+    }
+
+    .gateway-menu{
+        left: auto;
+        right: -8px;
+        transform: none;
+    }
+
+    .side-nav-shell{
+        top: 68px;
+        transform: translateX(-100%);
+    }
+
+    .side-nav-shell.is-open{
+        transform: translateX(0);
+    }
+
+    .open-side{
+        top: auto;
+        bottom: 24px;
+        left: 100%;
+        right: auto;
+    }
+
+    .side-nav-shell.is-open .open-side{
+        left: auto;
+        right: -48px;
+    }
+
+    .hero{
+        min-height: 0;
+        gap: 32px;
+    }
+
+    .hero-image,
+    .hero-details{
+        flex-basis: 100%;
+        max-width: 100%;
+    }
+
+    .hero-image{
+        align-items: center;
+    }
+
+    .hero-details{
+        padding: 0;
+    }
+}
+
+#projects div{
+    margin-top: 20px;
+}
+
+#task-manager, 
+#festival-sec,
+#Clothes-shop{
+    border-bottom: solid 1px lightgray;
+    padding-bottom: 5px;
+}
+
+@media (max-width: 420px){
+    .top-nav #nav-center{
+        order: 3;
+        flex-basis: 100%;
+    }
+
+    .top-nav #nav-center ul{
+        justify-content: center;
+        width: 100%;
+    }
+
+    .top-nav{
+        flex-wrap: wrap;
+    }
+
+    .page-section{
+        padding-inline: 12px;
+    }
+
+    .hero{
+        padding: 24px 14px;
+    }
+}
+
+.video-shell{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.video-conc{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+    width: min(100%, 900px);
+    padding: clamp(12px, 3vw, 24px);
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.82);
+}
+
+.project-video{
+    display: block;
+    width: min(100%, 760px);
+    height: auto;
+    aspect-ratio: 16 / 9;
+    object-fit: contain;
+    border-radius: 12px;
+    background: #17212b;
+}
+
+.video-conc p{
+    width: min(100%, 760px);
+    color: var(--muted);
+}
+
+@media (max-width: 480px){
+    .video-conc{
+        gap: 12px;
+        padding: 10px;
+        border-radius: 12px;
+    }
+
+    .project-video{
+        border-radius: 8px;
+    }
+}
+
+td{
+    border: solid 1px black;
+    border-collapse: collapse;
+    padding: 3px 5px;
+}
+
+table{
+    text-align: center;
+    width: 35%;
+}
+
+.images-conc{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    width: min(100%, 900px);
+    margin: 0 auto;
+    padding: 20px 0;
+}
+
+.images-conc img{
+    display: block;
+    width: min(100%, 450px);
+    height: auto;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 18px;
+    border: 1px solid var(--line);
+    box-shadow: 0 16px 32px rgba(23, 50, 77, 0.12);
+    background: #f3f3f3;
+}
+
+@media (max-width: 480px){
+    .images-conc{
+        gap: 14px;
+        padding: 12px 0;
+    }
+
+    .images-conc img{
+        border-radius: 12px;
+    }
+}
+
+#task-manager div{
+    margin-top: 10px;
+}
+
+.image-conc-options{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap:30px;
+}
+
+.image-conc-options button{
+    width: 50px;
+    height:50px;
+    border-radius: 50%;
+    border:none;
+    transition: all 0.3s ease;
+}
+.image-conc-options i{
+    scale: 2.5;
+}
+
+.image-conc-options button:hover{
+    scale:1.2;
+
+}
+
+.full-screen-img{
+    position: fixed;
+    inset: 0;
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+    padding: 24px;
+    background: rgba(10, 14, 18, 0.72);
+    backdrop-filter: blur(4px);
+}
+
+.full-screen-img img{
+    display: block;
+    max-width: min(90vw, 1100px);
+    max-height: 90vh;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    border-radius: 18px;
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+}
+</style>
+<body>
+    <nav class="top-nav">
+        <div>
+            <h3>Ceejay's Portfolio</h3>
+        </div>
+        <div id="nav-center">
+            <ul>
+                <li class="mega-link">
+                    <i class="fa-solid fa-sliders"></i>
+                    <span>Gateways</span> 
+                    <div class="gateway-menu">
+                        <h2>Select a page to visit:</h2>
+                        <select aria-label="Select a gateway">
+                            <option value="task-manager">Task Manager Website</option>
+                            <option value="festival">Festival Website</option>
+                            <option value="clothes-store">Clothes Store</option>
+                        </select>
+                        <a type="button" href="#task-manager" class="change-page">Visit</a>
+                    </div>
+                </li>
+                <li>
+                    <i class="fa-brands fa-github"></i>
+                    <a class="github-link" href="https://github.com/ceejaystokes09-stack/" target="_blank" rel="noopener noreferrer" aria-label="Visit Ceejay's GitHub profile"><span>Github</span></a>
+                    
+                </li>
+            </ul>
+        </div>
+        <div style="justify-content: end;">
+            <span>Settings</span>
+            <i class="fa-solid fa-gear"></i>
+            
+        </div>
+    </nav>
+    <div class="side-nav-shell">
+        <aside class="side-nav" id="side-nav" aria-label="Page navigation">
+            <h2>Explore</h2>
+            <nav>
+                <a href="#home">Home</a>
+            
+                <a href="#projects">Projects</a>
+                <a href="#contact">Contact</a>
+            </nav>
+        </aside>
+        <button class="open-side" type="button" aria-label="Open page navigation" aria-controls="side-nav" aria-expanded="false">
+            <i class="fa-solid fa-bars" aria-hidden="true"></i>
+            <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+        </button>
+    </div>
+    <main>
+        <section class="page-section" id="home">
+            <div>
+                <h1>Home</h1>
+                </div>
+            <div class="hero box">
+                <div class="hero-image">
+                    <div class="circle big"></div>
+                    <ul>
+                        <li>Ceejay Stokes</li>
+                        <li>31/05/2009</li>
+                        <li>Manchester, Bolton, England, UK</li>
+                        <li>8 GCSE's, 1 T-Level</li>
+                    </ul>
+                </div>
+                <div class="hero-details">
+                    <p>
+                    My name is Ceejay Stokes, i grew up and was raised in Manchester, Bolton, UK. 
+                    I'm currently in college studying a coarse on website development and will be enterring university later in 2027.
+                    My aspiration's in life include doing something digital related, im hoping to be either a full stack web developer or a games programmer. 
+                    The main areas of game development im interested in is a "physics engineer in a 3D environment in real time", a "destruction physics programmer in a 3D environment in real time".
+                    </p>
+                </div>
+                
+            </div>
+        </section>
+        <section class="page-section" id="projects">
+            <h1>Projects</h1>
+            <p>Explore the projects I have built.</p>
+            
+            <div id="task-manager">
+                <h3>Task Manager website</h3>
+                <p>Want to see the <a href="https://github.com/ceejaystokes09-stack/task-manager-">code</a>?</p>
+                <div class="video-shell">
+                    <div class="video-conc box">
+                        <video class="project-video" controls preload="metadata" aria-label="Task Manager website showcase">
+                            <source src="assets/Task-manager/website-showcase.mp4" type="video/mp4">
+                        </video>
+                        <p>A video showing how the website works and function the key functionality of the website. The website isnt uploaded live, so if u want to see the website personally pls download the code or watch the video to show the website in use.</p>
+                    </div>
+                </div>
+                
+                <div class="images-conc box">
+                    
+                    <h4>Open screen - light theme</h4>
+                    <div class="image-conc-options">
+                        <button class="image-left" onclick="changeImage(1, TASK_MANAGER)"><i class="fa-solid fa-circle-chevron-left"></i></button>
+                        <img src="assets/Task-manager/open.png">
+                        <button class="image-right" onclick="changeImage(-1, TASK_MANAGER)"><i class="fa-solid fa-circle-chevron-right"></i></button>
+                    </div>
+                    
+                </div>
+                
+            </div>
+            <div id="festival-sec">
+                <h3>Festival website</h3>
+                <p>Want to see the <a href="https://github.com/ceejaystokes09-stack/Festival-website">code</a>?</p>
+                <div class="video-shell">
+                    <div class="video-conc box">
+                        <video class="project-video" controls preload="metadata" aria-label="Festival website showcase">
+                            <source src="assets/Festival/Festival-open-clip.mp4" type="video/mp4">
+                        </video>
+                        <p>A video showing how the website works and function the key functionality of the website. The website isnt uploaded live, so if u want to see the website personally pls download the code or watch the video to show the website in use.</p>
+                    </div>
+                </div>
+                
+                <div class="images-conc box">
+                    
+                    <h4>Home page</h4>
+                    <div class="image-conc-options">
+                        <button class="image-left" onclick="changeImage(1, FESTIVAL)"><i class="fa-solid fa-circle-chevron-left"></i></button>
+                        <img src="assets/Festival/Home-page.png">
+                        <button class="image-right" onclick="changeImage(-1, FESTIVAL)"><i class="fa-solid fa-circle-chevron-right"></i></button>
+                    </div>
+                    
+                </div>
+                
+            </div>
+            <div id="Clothes-shop">
+                <h3>Clothes Shop website</h3>
+                <p>Want to see the <a href="https://github.com/ceejaystokes09-stack/clothes-store">code</a>?</p>
+                <div class="video-shell">
+                    <div class="video-conc box">
+                        <video class="project-video" controls preload="metadata" aria-label="Clothes Store website showcase">
+                            <source src="assets/Clothes-store/clip.mp4" type="video/mp4">
+                        </video>
+                        <p>A video showing how the website works and function the key functionality of the website. The website isnt uploaded live, so if u want to see the website personally pls download the code or watch the video to show the website in use.</p>
+                    </div>
+                </div>
+                
+                <div class="images-conc box">
+                    
+                    <h4>Home page - Light</h4>
+                    <div class="image-conc-options">
+                        <button class="image-left" onclick="changeImage(1, CLOTHES_STORE)"><i class="fa-solid fa-circle-chevron-left"></i></button>
+                        <img src="assets/Clothes-store/home-light.png">
+                        <button class="image-right" onclick="changeImage(-1, CLOTHES_STORE)"><i class="fa-solid fa-circle-chevron-right"></i></button>
+                    </div>
+                    
+                </div>
+                
+            </div>
+        </section>
+        <section class="page-section" id="contact">
+            <h1>Contact</h1>
+            <p>Get in touch with me.</p>
+            <div style="display: flex;align-items: center;justify-content: center;">
+                <table>
+                    <thead>
+                        <td><i class="fa-solid fa-envelope"></i>Email</td>
+                    </thead>
+                    <tbody>
+                        <td>ceejay.stokes09@gmail.com</td>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+    
+</body>
+<script>
+    function id(l){
+    return document.getElementById(l)
+}
+function query(l){
+    return document.querySelector(l)
+}
+
+function queryAll(l){
+    return document.querySelectorAll(l)
+}
+
+
+
+const gateway_data= {
+    current: "TaskManager", 
+    options:["TaskManager","FestivalWeb", "Clothes"],
+    links: ["task-manager","festival-sec","Clothes-shop"]
+}
+
+function handleGatewayChange(event){
+    const selectedGateway = event.target.value
+
+    let num = 0; 
+    queryAll(".mega-link option").forEach(element => {
+        if(element.value === selectedGateway){
+            gateway_data.current = gateway_data.options[num]
+        }
+        num++ 
+    });
+    //console.log(selectedGateway)
+    //console.log(gateway_data)
+    
+}
+
+function visitPage(e){
+    const area = gateway_data.options.indexOf(gateway_data.current)
+    e.target.href = `#${gateway_data.links[area]}`;
+    return; 
+}
+
+query(".mega-link a").addEventListener("click", visitPage)
+query(".mega-link select").addEventListener("change", handleGatewayChange)
+
+const sideToggle = query(".open-side")
+const sideNav = query(".side-nav")
+const sideNavShell = query(".side-nav-shell")
+
+sideToggle.addEventListener("click", () => {
+    const isOpen = sideNavShell.classList.toggle("is-open")
+    sideToggle.setAttribute("aria-expanded", isOpen)
+    sideToggle.setAttribute("aria-label", isOpen ? "Close page navigation" : "Open page navigation")
+})
+
+queryAll(".side-nav a").forEach(link => {
+    link.addEventListener("click", () => {
+        sideNavShell.classList.remove("is-open")
+        sideToggle.setAttribute("aria-expanded", "false")
+        sideToggle.setAttribute("aria-label", "Open page navigation")
+    })
+})
+
+
+
+
+
+function getFileName(src, folderName) {
+    const path = src.replace(/\\/g, "/").split(/[?#]/)[0];
+    const folder = folderName.replace(/^\/+|\/+$/g, "");
+    const folderIndex = path.lastIndexOf(`/${folder}/`);
+
+    if (folderIndex !== -1) {
+        return path.slice(folderIndex + folder.length + 2);
+    }
+
+    return path.split("/").pop();
+}
+
+function removeEvents(el,func){
+    const events = ["click", "doudleclick", "transitionend", "animationend", "submit","checked"]
+    events.map(e=>{el.removeEventListener(e,func)})
+}
+
+function isDOMElement(value) {
+  return value !== null && value instanceof Element;
+}
+
+function removeDOM(el){
+
+    if (isDOMElement(el)){
+        try{
+            el.remove()
+            removeEvents(el,removeDOM)
+            return; 
+
+        }
+        catch(e){1+1}
+        return; 
+    }
+    this.remove();
+    removeEvents(this,removeDOM)
+    return; 
+}
+const TASK_MANAGER = {
+    id:"task-manager",
+    title_options : ["Open task UI - dark theme", "Open task UI - light theme", "Open screen - light theme"],
+    image_options:["assets/Task-manager/open-tasks-darkTheme.png", "assets/Task-manager/open-tasks-lightTheme.png", "assets/Task-manager/open.png"],
+}
+const FESTIVAL = {
+    id:"festival-sec", 
+    title_options : ["Home page", "Booking festival tickets"],
+    image_options: ["assets/Festival/Home-page.png", "assets/Festival/Payment-details.png"], 
+}
+
+const CLOTHES_STORE={
+    id:"",
+    title_options:["Home page - Light", "Products page - light", "Create account page","Login page","Home page - dark", "Products page - dark" ],
+    image_options:["assets/Clothes-store/home-light.png","assets/Clothes-store/products-page-light.png","assets/Clothes-store/create-acc-page.png","assets/Clothes-store/login-page.png","assets/Clothes-store/home-dark.png", "assets/Clothes-store/products-page-dark.png"]
+
+}
+
+function changeImage(change, obj) {
+    if (!obj) return;
+
+    const images = queryAll(".images-conc img");
+    const img = [...images].find(image => {
+        const src = image.getAttribute("src").replace(/^\//, "");
+        return obj.image_options.includes(src);
+    });
+    if (!img) return;
+
+    const currentSrc = img.getAttribute("src").replace(/^\//, "");
+    const currentIndex = obj.image_options.indexOf(currentSrc);
+
+    const nextIndex = (currentIndex + change + obj.image_options.length) % obj.image_options.length;
+    img.closest(".images-conc").querySelector("h4").textContent = obj.title_options[nextIndex];
+    img.src = obj.image_options[nextIndex];
+}
+
+queryAll(".images-conc img").forEach(e=>{e.addEventListener("click", (e)=>{
+    const ui = document.createElement("div")
+    ui.className="full-screen-img"
+    ui.innerHTML = `<img src="assets/${getFileName(e.target.src, "assets/")}">`
+    document.documentElement.appendChild(ui)
+
+    ui.addEventListener("click", removeDOM)
+})})
+
+
+</script>
+</html>
