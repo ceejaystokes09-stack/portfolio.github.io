@@ -7,7 +7,7 @@
     <title>Ceejay's Portfolio</title>
 </head>
 <style>
-    *{
+*{
     margin: 0;
     box-sizing: border-box;
 }
@@ -1407,7 +1407,7 @@ function openFullscreenImage(obj, selectedIndex) {
         </div>
         <button class="fullscreen-prev" type="button" aria-label="Previous image">&#10094;</button>
         <div class="fullscreen-content">
-            <img class="fullscreen-image" alt="">
+            <img class="fullscreen-image" alt="" draggable="false">
             <div class="fullscreen-thumbnails" role="list"></div>
         </div>
         <button class="fullscreen-next" type="button" aria-label="Next image">&#10095;</button>
@@ -1437,10 +1437,14 @@ function openFullscreenImage(obj, selectedIndex) {
         thumbnails.appendChild(thumbnail);
     });
 
+    function renderTransform() {
+        image.style.transform = `translate(${panX}px, ${panY}px) scale(${zoomLevel})`;
+    }
+
     function updateViewer() {
         image.src = obj.image_options[currentIndex];
         image.alt = obj.alt[currentIndex];
-        image.style.transform = `translate(${panX}px, ${panY}px) scale(${zoomLevel})`;
+        renderTransform();
         viewer.querySelector(".zoom-reset").textContent = `${Math.round(zoomLevel * 100)}%`;
         viewer.querySelectorAll(".fullscreen-thumbnail").forEach((thumbnail, index) => {
             thumbnail.classList.toggle("is-selected", index === currentIndex);
@@ -1457,7 +1461,8 @@ function openFullscreenImage(obj, selectedIndex) {
     }
 
     function startPan(event) {
-        if (zoomLevel === 1) return;
+        if (zoomLevel === 1 || (event.pointerType === "mouse" && event.button !== 0)) return;
+        event.preventDefault();
         pointerStartX = event.clientX;
         pointerStartY = event.clientY;
         panStartX = panX;
@@ -1470,7 +1475,7 @@ function openFullscreenImage(obj, selectedIndex) {
         if (!image.hasPointerCapture(event.pointerId)) return;
         panX = panStartX + event.clientX - pointerStartX;
         panY = panStartY + event.clientY - pointerStartY;
-        updateViewer();
+        renderTransform();
     }
 
     function endPan(event) {
