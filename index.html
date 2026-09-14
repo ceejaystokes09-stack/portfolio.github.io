@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
     <script src="https://kit.fontawesome.com/304058e96a.js" crossorigin="anonymous"></script>
     <title>Ceejay's Portfolio</title>
 </head>
@@ -33,6 +32,10 @@ body{
     font-family: "Trebuchet MS", "Segoe UI", sans-serif;
     font-size: 1rem;
     line-height: 1.6;
+}
+
+body.fullscreen-open{
+    overflow: hidden;
 }
 
 h1, h2, h3{
@@ -782,7 +785,7 @@ td{
 
 table{
     text-align: center;
-    width: 35%;
+    width: min(100%, 520px);
 }
 
 .images-conc{
@@ -790,7 +793,7 @@ table{
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 20px;
+    gap: clamp(14px, 3vw, 20px);
     width: min(100%, 900px);
     margin: 0 auto;
     padding: 20px 0;
@@ -828,10 +831,12 @@ table{
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    gap:30px;
+    width: 100%;
+    gap: clamp(10px, 4vw, 30px);
 }
 
 .image-conc-options button{
+    flex: 0 0 50px;
     width: 50px;
     height:50px;
     border-radius: 50%;
@@ -854,22 +859,204 @@ table{
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 100vw;
-    height: 100vh;
-    padding: 24px;
+    width: 100%;
+    height: 100dvh;
+    padding: max(16px, env(safe-area-inset-top)) max(16px, env(safe-area-inset-right)) max(16px, env(safe-area-inset-bottom)) max(16px, env(safe-area-inset-left));
     background: rgba(10, 14, 18, 0.72);
     backdrop-filter: blur(4px);
 }
 
-.full-screen-img img{
+.fullscreen-content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    width: min(100%, 1100px);
+    max-height: 100%;
+    min-width: 0;
+}
+
+.fullscreen-image{
     display: block;
-    max-width: min(90vw, 1100px);
-    max-height: 90vh;
+    max-width: 100%;
+    max-height: min(74dvh, 760px);
     width: auto;
     height: auto;
     object-fit: contain;
+    cursor: grab;
+    touch-action: none;
+    transform-origin: center center;
+    transition: transform 0.2s ease;
     border-radius: 18px;
     box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+}
+
+.fullscreen-zoom-controls{
+    position: absolute;
+    top: max(24px, env(safe-area-inset-top));
+    left: max(24px, env(safe-area-inset-left));
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    border-radius: 10px;
+    background: rgba(10, 14, 18, 0.7);
+}
+
+.fullscreen-zoom-controls button{
+    min-width: 38px;
+    min-height: 36px;
+    padding: 4px 8px;
+    border: 0;
+    border-radius: 6px;
+    color: white;
+    background: transparent;
+    cursor: pointer;
+    font: inherit;
+    font-weight: 700;
+}
+
+.fullscreen-zoom-controls button:hover,
+.fullscreen-zoom-controls button:focus-visible{
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.zoom-reset{
+    min-width: 58px !important;
+    font-size: 0.85rem !important;
+}
+
+.fullscreen-close,
+.fullscreen-prev,
+.fullscreen-next{
+    position: absolute;
+    display: grid;
+    place-items: center;
+    width: 46px;
+    height: 46px;
+    border: 1px solid rgba(255, 255, 255, 0.45);
+    border-radius: 50%;
+    color: white;
+    background: rgba(10, 14, 18, 0.7);
+    cursor: pointer;
+    font-size: 1.5rem;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.fullscreen-close:hover,
+.fullscreen-prev:hover,
+.fullscreen-next:hover{
+    background: rgba(10, 14, 18, 0.95);
+    transform: scale(1.08);
+}
+
+.fullscreen-close{
+    top: 24px;
+    right: 24px;
+    font-size: 2rem;
+    line-height: 1;
+}
+
+.fullscreen-prev,
+.fullscreen-next{
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.fullscreen-prev:hover,
+.fullscreen-next:hover{
+    transform: translateY(-50%) scale(1.08);
+}
+
+.fullscreen-prev{
+    left: max(8px, min(6vw, 72px));
+}
+
+.fullscreen-next{
+    right: max(8px, min(6vw, 72px));
+}
+
+.fullscreen-thumbnails{
+    display: flex;
+    gap: 10px;
+    width: 100%;
+    max-width: 900px;
+    overflow-x: auto;
+    padding: 4px;
+}
+
+.fullscreen-thumbnail{
+    flex: 0 0 72px;
+    width: 72px;
+    height: 54px;
+    padding: 2px;
+    border: 2px solid transparent;
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.18);
+    cursor: pointer;
+}
+
+.fullscreen-thumbnail.is-selected{
+    border-color: white;
+}
+
+.fullscreen-thumbnail img{
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 3px;
+}
+
+@media (max-width: 600px){
+    .full-screen-img{
+        padding: max(12px, env(safe-area-inset-top)) max(12px, env(safe-area-inset-right)) max(12px, env(safe-area-inset-bottom)) max(12px, env(safe-area-inset-left));
+    }
+
+    .fullscreen-image{
+        max-width: calc(100% - 56px);
+        max-height: 62dvh;
+        border-radius: 10px;
+    }
+
+    .fullscreen-content{
+        gap: 12px;
+    }
+
+    .fullscreen-close{
+        top: 12px;
+        right: 12px;
+    }
+
+    .fullscreen-zoom-controls{
+        top: max(12px, env(safe-area-inset-top));
+        left: max(12px, env(safe-area-inset-left));
+    }
+
+    .fullscreen-prev,
+    .fullscreen-next{
+        top: 42%;
+    }
+
+    .fullscreen-prev{
+        left: max(8px, env(safe-area-inset-left));
+    }
+
+    .fullscreen-next{
+        right: max(8px, env(safe-area-inset-right));
+    }
+
+    .fullscreen-thumbnail{
+        flex-basis: 64px;
+        width: 64px;
+        height: 48px;
+    }
+}
+
+.fullscreen-image.is-panning{
+    cursor: grabbing;
+    transition: none;
 }
 </style>
 <body>
@@ -949,6 +1136,7 @@ table{
         <section class="page-section" id="projects">
             <h1>Projects</h1>
             <p>Explore the projects I have built.</p>
+            <!---
             
             <div id="task-manager">
                 <h3>Task Manager website</h3>
@@ -1022,6 +1210,7 @@ table{
                 </div>
                 
             </div>
+            -->
         </section>
         <section class="page-section" id="contact">
             <h1>Contact</h1>
@@ -1041,7 +1230,7 @@ table{
     
 </body>
 <script>
-    function id(l){
+function id(l){
     return document.getElementById(l)
 }
 function query(l){
@@ -1143,26 +1332,50 @@ function removeDOM(el){
     removeEvents(this,removeDOM)
     return; 
 }
+
+
+
+
+// data handling the projects section of the pages
+
+
 const TASK_MANAGER = {
     id:"task-manager",
+    title: "Task Manager website", 
+    github_link:"https://github.com/ceejaystokes09-stack/task-manager-",
+    asset_folder: "assets/Task-manager/",
+    video_link:"website-showcase.mp4" ,
     title_options : ["Open task UI - dark theme", "Open task UI - light theme", "Open screen - light theme"],
     image_options:["assets/Task-manager/open-tasks-darkTheme.png", "assets/Task-manager/open-tasks-lightTheme.png", "assets/Task-manager/open.png"],
+    alt:["Website tasks dark theme", "Websites tasks light theme", "Website open"],
 }
 const FESTIVAL = {
     id:"festival-sec", 
+    title: "Festival website", 
+    github_link:"https://github.com/ceejaystokes09-stack/Festival-website",
+    asset_folder: "assets/Festival/" ,
+    video_link: "Festival-open-clip.mp4" ,
     title_options : ["Home page", "Booking festival tickets"],
     image_options: ["assets/Festival/Home-page.png", "assets/Festival/Payment-details.png"], 
+    alt: ["Website home","Website payment area"],
 }
 
 const CLOTHES_STORE={
-    id:"",
+    id:"Clothes-shop",
+    title: "Clothes Shop website",
+    github_link:"https://github.com/ceejaystokes09-stack/clothes-store", 
+    asset_folder: "assets/Clothes-store/",
+    video_link: "clip.mp4",
     title_options:["Home page - Light", "Products page - light", "Create account page","Login page","Home page - dark", "Products page - dark" ],
-    image_options:["assets/Clothes-store/home-light.png","assets/Clothes-store/products-page-light.png","assets/Clothes-store/create-acc-page.png","assets/Clothes-store/login-page.png","assets/Clothes-store/home-dark.png", "assets/Clothes-store/products-page-dark.png"]
-
+    image_options:["assets/Clothes-store/home-light.png","assets/Clothes-store/products-page-light.png","assets/Clothes-store/create-acc-page.png","assets/Clothes-store/login-page.png","assets/Clothes-store/home-dark.png", "assets/Clothes-store/products-page-dark.png"],
+    alt:["Website home light theme", "Websites product page light theme", "Website create acc page", "Website login page", "Website home dark theme", "Websites products dark theme"],
 }
+
+const projects = [TASK_MANAGER,FESTIVAL, CLOTHES_STORE]
 
 function changeImage(change, obj) {
     if (!obj) return;
+    console.log(obj)
 
     const images = queryAll(".images-conc img");
     const img = [...images].find(image => {
@@ -1177,16 +1390,215 @@ function changeImage(change, obj) {
     const nextIndex = (currentIndex + change + obj.image_options.length) % obj.image_options.length;
     img.closest(".images-conc").querySelector("h4").textContent = obj.title_options[nextIndex];
     img.src = obj.image_options[nextIndex];
+    img.alt = obj.alt[nextIndex];
 }
 
-queryAll(".images-conc img").forEach(e=>{e.addEventListener("click", (e)=>{
-    const ui = document.createElement("div")
-    ui.className="full-screen-img"
-    ui.innerHTML = `<img src="assets/${getFileName(e.target.src, "assets/")}">`
-    document.documentElement.appendChild(ui)
+function openFullscreenImage(obj, selectedIndex) {
+    const viewer = document.createElement("div");
+    viewer.className = "full-screen-img";
+    viewer.setAttribute("role", "dialog");
+    viewer.setAttribute("aria-modal", "true");
+    viewer.innerHTML = `
+        <button class="fullscreen-close" type="button" aria-label="Close image viewer">&times;</button>
+        <div class="fullscreen-zoom-controls" role="group" aria-label="Zoom controls">
+            <button class="zoom-out" type="button" aria-label="Zoom out">&minus;</button>
+            <button class="zoom-reset" type="button" aria-label="Reset zoom">100%</button>
+            <button class="zoom-in" type="button" aria-label="Zoom in">&plus;</button>
+        </div>
+        <button class="fullscreen-prev" type="button" aria-label="Previous image">&#10094;</button>
+        <div class="fullscreen-content">
+            <img class="fullscreen-image" alt="">
+            <div class="fullscreen-thumbnails" role="list"></div>
+        </div>
+        <button class="fullscreen-next" type="button" aria-label="Next image">&#10095;</button>
+    `;
 
-    ui.addEventListener("click", removeDOM)
-})})
+    const image = viewer.querySelector(".fullscreen-image");
+    const thumbnails = viewer.querySelector(".fullscreen-thumbnails");
+    let currentIndex = selectedIndex;
+    let zoomLevel = 1;
+    let panX = 0;
+    let panY = 0;
+    let pointerStartX = 0;
+    let pointerStartY = 0;
+    let panStartX = 0;
+    let panStartY = 0;
+
+    obj.image_options.forEach((src, index) => {
+        const thumbnail = document.createElement("button");
+        thumbnail.className = "fullscreen-thumbnail";
+        thumbnail.type = "button";
+        thumbnail.setAttribute("aria-label", `View ${obj.title_options[index]}`);
+        thumbnail.innerHTML = `<img src="${src}" alt="">`;
+        thumbnail.addEventListener("click", () => {
+            currentIndex = index;
+            updateViewer();
+        });
+        thumbnails.appendChild(thumbnail);
+    });
+
+    function updateViewer() {
+        image.src = obj.image_options[currentIndex];
+        image.alt = obj.alt[currentIndex];
+        image.style.transform = `translate(${panX}px, ${panY}px) scale(${zoomLevel})`;
+        viewer.querySelector(".zoom-reset").textContent = `${Math.round(zoomLevel * 100)}%`;
+        viewer.querySelectorAll(".fullscreen-thumbnail").forEach((thumbnail, index) => {
+            thumbnail.classList.toggle("is-selected", index === currentIndex);
+        });
+    }
+
+    function setZoom(nextZoom) {
+        zoomLevel = Math.min(3, Math.max(1, nextZoom));
+        if (zoomLevel === 1) {
+            panX = 0;
+            panY = 0;
+        }
+        updateViewer();
+    }
+
+    function startPan(event) {
+        if (zoomLevel === 1) return;
+        pointerStartX = event.clientX;
+        pointerStartY = event.clientY;
+        panStartX = panX;
+        panStartY = panY;
+        image.setPointerCapture(event.pointerId);
+        image.classList.add("is-panning");
+    }
+
+    function movePan(event) {
+        if (!image.hasPointerCapture(event.pointerId)) return;
+        panX = panStartX + event.clientX - pointerStartX;
+        panY = panStartY + event.clientY - pointerStartY;
+        updateViewer();
+    }
+
+    function endPan(event) {
+        if (image.hasPointerCapture(event.pointerId)) {
+            image.releasePointerCapture(event.pointerId);
+        }
+        image.classList.remove("is-panning");
+    }
+
+    function closeViewer() {
+        document.removeEventListener("keydown", handleKeydown);
+        document.body.classList.remove("fullscreen-open");
+        viewer.remove();
+    }
+
+    function handleKeydown(event) {
+        if (event.key === "Escape") closeViewer();
+        if (event.key === "ArrowLeft") {
+            currentIndex = (currentIndex - 1 + obj.image_options.length) % obj.image_options.length;
+            updateViewer();
+        }
+        if (event.key === "ArrowRight") {
+            currentIndex = (currentIndex + 1) % obj.image_options.length;
+            updateViewer();
+        }
+        if (event.key === "+" || event.key === "=") setZoom(zoomLevel + 0.25);
+        if (event.key === "-" || event.key === "_") setZoom(zoomLevel - 0.25);
+        if (event.key === "0") setZoom(1);
+    }
+
+    viewer.querySelector(".fullscreen-close").addEventListener("click", closeViewer);
+    viewer.querySelector(".fullscreen-prev").addEventListener("click", () => {
+        currentIndex = (currentIndex - 1 + obj.image_options.length) % obj.image_options.length;
+        updateViewer();
+    });
+    viewer.querySelector(".fullscreen-next").addEventListener("click", () => {
+        currentIndex = (currentIndex + 1) % obj.image_options.length;
+        updateViewer();
+    });
+    viewer.querySelector(".zoom-in").addEventListener("click", () => setZoom(zoomLevel + 0.25));
+    viewer.querySelector(".zoom-out").addEventListener("click", () => setZoom(zoomLevel - 0.25));
+    viewer.querySelector(".zoom-reset").addEventListener("click", () => setZoom(1));
+    image.addEventListener("wheel", event => {
+        event.preventDefault();
+        setZoom(zoomLevel + (event.deltaY < 0 ? 0.25 : -0.25));
+    }, { passive: false });
+    image.addEventListener("pointerdown", startPan);
+    image.addEventListener("pointermove", movePan);
+    image.addEventListener("pointerup", endPan);
+    image.addEventListener("pointercancel", endPan);
+    viewer.addEventListener("click", event => {
+        if (event.target === viewer) closeViewer();
+    });
+    document.addEventListener("keydown", handleKeydown);
+    document.body.appendChild(viewer);
+    document.body.classList.add("fullscreen-open");
+    updateViewer();
+}
+
+projects.forEach(obj=>{
+    createProjects_UI(obj)
+})
+
+function createProjects_UI(obj){
+    const div = document.createElement("div")
+    div.id = obj.id; 
+    div.innerHTML = `
+    <h3>${obj.title}</h3>
+    <p>Want to see the <a href="${obj.github_link}" target="_blank" rel="noopener noreferrer">code</a>?</p>
+    <div class="video-shell">
+        <div class="video-conc box">
+            <video class="project-video" controls preload="metadata" aria-label="Task Manager website showcase">
+                <source src="${obj.asset_folder + obj.video_link}" type="video/mp4">
+            </video>
+            <p>A video showing how the website works and function the key functionality of the website. The website isnt uploaded live, so if u want to see the website personally pls download the code or watch the video to show the website in use.</p>
+        </div>
+    </div>
+    
+    <div class="images-conc box">
+        
+        <h4>Open screen - light theme</h4>
+        <div class="image-conc-options">
+            <button class="image-left" type="button" aria-label="Previous image"><i class="fa-solid fa-circle-chevron-left"></i></button>
+            <img src="${obj.image_options[0]}" alt="${obj.alt[0]}">
+            <button class="image-right" type="button" aria-label="Next image"><i class="fa-solid fa-circle-chevron-right"></i></button>
+        </div>
+        
+    </div>
+    `
+    id("projects").appendChild(div)
+
+    const image = div.querySelector(".images-conc img");
+    div.querySelector(".image-left").addEventListener("click", () => changeImage(1, obj));
+    div.querySelector(".image-right").addEventListener("click", () => changeImage(-1, obj));
+    image.addEventListener("click", () => {
+        const selectedIndex = obj.image_options.indexOf(image.getAttribute("src"));
+        openFullscreenImage(obj, selectedIndex === -1 ? 0 : selectedIndex);
+    });
+}
+
+/*
+base html = 
+<div id="task-manager">
+    <h3>Task Manager website</h3>
+    <p>Want to see the <a href="https://github.com/ceejaystokes09-stack/task-manager-">code</a>?</p>
+    <div class="video-shell">
+        <div class="video-conc box">
+            <video class="project-video" controls preload="metadata" aria-label="Task Manager website showcase">
+                <source src="assets/Task-manager/website-showcase.mp4" type="video/mp4">
+            </video>
+            <p>A video showing how the website works and function the key functionality of the website. The website isnt uploaded live, so if u want to see the website personally pls download the code or watch the video to show the website in use.</p>
+        </div>
+    </div>
+    
+    <div class="images-conc box">
+        
+        <h4>Open screen - light theme</h4>
+        <div class="image-conc-options">
+            <button class="image-left" onclick="changeImage(1, TASK_MANAGER)"><i class="fa-solid fa-circle-chevron-left"></i></button>
+            <img src="assets/Task-manager/open.png">
+            <button class="image-right" onclick="changeImage(-1, TASK_MANAGER)"><i class="fa-solid fa-circle-chevron-right"></i></button>
+        </div>
+        
+    </div>
+    
+</div>
+*/
+
 
 
 </script>
