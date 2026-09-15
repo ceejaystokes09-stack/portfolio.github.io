@@ -985,29 +985,21 @@ function queryAll(l){
 
 
 const gateway_data= {
-    current: "TaskManager", 
-    options:["TaskManager","FestivalWeb", "Clothes", "Calculator"],
-    links: ["task-manager","festival-sec","Clothes-shop", "Calculator-app"]
+    current: "task-manager", 
+    links: {
+        "task-manager": "task-manager",
+        "festival": "festival-sec",
+        "clothes-store": "Clothes-shop",
+        "Calculator": "Calculator-app"
+    }
 }
 
 function handleGatewayChange(event){
-    const selectedGateway = event.target.value
-
-    let num = 0; 
-    queryAll(".mega-link option").forEach(element => {
-        if(element.value === selectedGateway){
-            gateway_data.current = gateway_data.options[num]
-        }
-        num++ 
-    });
-    //console.log(selectedGateway)
-    //console.log(gateway_data)
-    
+    gateway_data.current = event.target.value
 }
 
 function visitPage(e){
-    const area = gateway_data.options.indexOf(gateway_data.current)
-    e.target.href = `#${gateway_data.links[area]}`;
+    e.target.href = `#${gateway_data.links[gateway_data.current]}`;
     return; 
 }
 
@@ -1293,6 +1285,7 @@ projects.forEach(obj=>{
 })
 
 function createProjects_UI(obj){
+    if (id(obj.id)) return;
     const div = document.createElement("div")
     let para ="A video showing how the website works and function the key functionality of the website. The website isnt uploaded live, so if u want to see the website personally pls download the code or watch the video to show the website in use." ; 
     if (Object.hasOwn(obj,"website")){
