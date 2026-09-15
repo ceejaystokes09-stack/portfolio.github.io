@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <script src="https://kit.fontawesome.com/304058e96a.js" crossorigin="anonymous"></script>
     <title>Ceejay's Portfolio</title>
 </head>
 <style>
-*{
+    *{
     margin: 0;
     box-sizing: border-box;
 }
@@ -32,10 +33,6 @@ body{
     font-family: "Trebuchet MS", "Segoe UI", sans-serif;
     font-size: 1rem;
     line-height: 1.6;
-}
-
-body.fullscreen-open{
-    overflow: hidden;
 }
 
 h1, h2, h3{
@@ -785,7 +782,7 @@ td{
 
 table{
     text-align: center;
-    width: min(100%, 520px);
+    width: 35%;
 }
 
 .images-conc{
@@ -793,7 +790,7 @@ table{
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: clamp(14px, 3vw, 20px);
+    gap: 20px;
     width: min(100%, 900px);
     margin: 0 auto;
     padding: 20px 0;
@@ -831,12 +828,10 @@ table{
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    width: 100%;
-    gap: clamp(10px, 4vw, 30px);
+    gap:30px;
 }
 
 .image-conc-options button{
-    flex: 0 0 50px;
     width: 50px;
     height:50px;
     border-radius: 50%;
@@ -859,204 +854,22 @@ table{
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 100%;
-    height: 100dvh;
-    padding: max(16px, env(safe-area-inset-top)) max(16px, env(safe-area-inset-right)) max(16px, env(safe-area-inset-bottom)) max(16px, env(safe-area-inset-left));
+    width: 100vw;
+    height: 100vh;
+    padding: 24px;
     background: rgba(10, 14, 18, 0.72);
     backdrop-filter: blur(4px);
 }
 
-.fullscreen-content{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-    width: min(100%, 1100px);
-    max-height: 100%;
-    min-width: 0;
-}
-
-.fullscreen-image{
+.full-screen-img img{
     display: block;
-    max-width: 100%;
-    max-height: min(74dvh, 760px);
+    max-width: min(90vw, 1100px);
+    max-height: 90vh;
     width: auto;
     height: auto;
     object-fit: contain;
-    cursor: grab;
-    touch-action: none;
-    transform-origin: center center;
-    transition: transform 0.2s ease;
     border-radius: 18px;
     box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
-}
-
-.fullscreen-zoom-controls{
-    position: absolute;
-    top: max(24px, env(safe-area-inset-top));
-    left: max(24px, env(safe-area-inset-left));
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    padding: 4px;
-    border: 1px solid rgba(255, 255, 255, 0.35);
-    border-radius: 10px;
-    background: rgba(10, 14, 18, 0.7);
-}
-
-.fullscreen-zoom-controls button{
-    min-width: 38px;
-    min-height: 36px;
-    padding: 4px 8px;
-    border: 0;
-    border-radius: 6px;
-    color: white;
-    background: transparent;
-    cursor: pointer;
-    font: inherit;
-    font-weight: 700;
-}
-
-.fullscreen-zoom-controls button:hover,
-.fullscreen-zoom-controls button:focus-visible{
-    background: rgba(255, 255, 255, 0.2);
-}
-
-.zoom-reset{
-    min-width: 58px !important;
-    font-size: 0.85rem !important;
-}
-
-.fullscreen-close,
-.fullscreen-prev,
-.fullscreen-next{
-    position: absolute;
-    display: grid;
-    place-items: center;
-    width: 46px;
-    height: 46px;
-    border: 1px solid rgba(255, 255, 255, 0.45);
-    border-radius: 50%;
-    color: white;
-    background: rgba(10, 14, 18, 0.7);
-    cursor: pointer;
-    font-size: 1.5rem;
-    transition: background 0.2s ease, transform 0.2s ease;
-}
-
-.fullscreen-close:hover,
-.fullscreen-prev:hover,
-.fullscreen-next:hover{
-    background: rgba(10, 14, 18, 0.95);
-    transform: scale(1.08);
-}
-
-.fullscreen-close{
-    top: 24px;
-    right: 24px;
-    font-size: 2rem;
-    line-height: 1;
-}
-
-.fullscreen-prev,
-.fullscreen-next{
-    top: 50%;
-    transform: translateY(-50%);
-}
-
-.fullscreen-prev:hover,
-.fullscreen-next:hover{
-    transform: translateY(-50%) scale(1.08);
-}
-
-.fullscreen-prev{
-    left: max(8px, min(6vw, 72px));
-}
-
-.fullscreen-next{
-    right: max(8px, min(6vw, 72px));
-}
-
-.fullscreen-thumbnails{
-    display: flex;
-    gap: 10px;
-    width: 100%;
-    max-width: 900px;
-    overflow-x: auto;
-    padding: 4px;
-}
-
-.fullscreen-thumbnail{
-    flex: 0 0 72px;
-    width: 72px;
-    height: 54px;
-    padding: 2px;
-    border: 2px solid transparent;
-    border-radius: 6px;
-    background: rgba(255, 255, 255, 0.18);
-    cursor: pointer;
-}
-
-.fullscreen-thumbnail.is-selected{
-    border-color: white;
-}
-
-.fullscreen-thumbnail img{
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 3px;
-}
-
-@media (max-width: 600px){
-    .full-screen-img{
-        padding: max(12px, env(safe-area-inset-top)) max(12px, env(safe-area-inset-right)) max(12px, env(safe-area-inset-bottom)) max(12px, env(safe-area-inset-left));
-    }
-
-    .fullscreen-image{
-        max-width: calc(100% - 56px);
-        max-height: 62dvh;
-        border-radius: 10px;
-    }
-
-    .fullscreen-content{
-        gap: 12px;
-    }
-
-    .fullscreen-close{
-        top: 12px;
-        right: 12px;
-    }
-
-    .fullscreen-zoom-controls{
-        top: max(12px, env(safe-area-inset-top));
-        left: max(12px, env(safe-area-inset-left));
-    }
-
-    .fullscreen-prev,
-    .fullscreen-next{
-        top: 42%;
-    }
-
-    .fullscreen-prev{
-        left: max(8px, env(safe-area-inset-left));
-    }
-
-    .fullscreen-next{
-        right: max(8px, env(safe-area-inset-right));
-    }
-
-    .fullscreen-thumbnail{
-        flex-basis: 64px;
-        width: 64px;
-        height: 48px;
-    }
-}
-
-.fullscreen-image.is-panning{
-    cursor: grabbing;
-    transition: none;
 }
 </style>
 <body>
@@ -1136,7 +949,6 @@ table{
         <section class="page-section" id="projects">
             <h1>Projects</h1>
             <p>Explore the projects I have built.</p>
-            <!---
             
             <div id="task-manager">
                 <h3>Task Manager website</h3>
@@ -1210,7 +1022,6 @@ table{
                 </div>
                 
             </div>
-            -->
         </section>
         <section class="page-section" id="contact">
             <h1>Contact</h1>
@@ -1230,7 +1041,7 @@ table{
     
 </body>
 <script>
-function id(l){
+    function id(l){
     return document.getElementById(l)
 }
 function query(l){
@@ -1245,8 +1056,8 @@ function queryAll(l){
 
 const gateway_data= {
     current: "TaskManager", 
-    options:["TaskManager","FestivalWeb", "Clothes"],
-    links: ["task-manager","festival-sec","Clothes-shop"]
+    options:["TaskManager","FestivalWeb", "Clothes", "Calculator"],
+    links: ["task-manager","festival-sec","Clothes-shop", "Calculator-app"]
 }
 
 function handleGatewayChange(event){
@@ -1371,7 +1182,19 @@ const CLOTHES_STORE={
     alt:["Website home light theme", "Websites product page light theme", "Website create acc page", "Website login page", "Website home dark theme", "Websites products dark theme"],
 }
 
-const projects = [TASK_MANAGER,FESTIVAL, CLOTHES_STORE]
+const CALCULATOR = {
+    id:"Calculator-app",
+    title: "Basic Calculator Website",
+    github_link:"https://github.com/ceejaystokes09-stack/calculator.github.io",
+    asset_folder:"assets/Calculator/",
+    video_link:"clip.mp4",
+    title_options:["Calculator Open"],
+    image_options:["assets/Calculator/open.png"],
+    alt:["Calculator open"],
+    website:"https://ceejaystokes09-stack.github.io/calculator.github.io/",
+}
+
+const projects = [TASK_MANAGER,FESTIVAL, CLOTHES_STORE, CALCULATOR]
 
 function changeImage(change, obj) {
     if (!obj) return;
@@ -1541,6 +1364,10 @@ projects.forEach(obj=>{
 
 function createProjects_UI(obj){
     const div = document.createElement("div")
+    let para ="A video showing how the website works and function the key functionality of the website. The website isnt uploaded live, so if u want to see the website personally pls download the code or watch the video to show the website in use." ; 
+    if (Object.hasOwn(obj,"website")){
+        para = `A video showing how the website works and function the key functionality of the website. The website is live, so if u want to see the website personally pls download the code or <a href=${obj.website}>Click Here</a>.`
+    }
     div.id = obj.id; 
     div.innerHTML = `
     <h3>${obj.title}</h3>
@@ -1550,7 +1377,7 @@ function createProjects_UI(obj){
             <video class="project-video" controls preload="metadata" aria-label="Task Manager website showcase">
                 <source src="${obj.asset_folder + obj.video_link}" type="video/mp4">
             </video>
-            <p>A video showing how the website works and function the key functionality of the website. The website isnt uploaded live, so if u want to see the website personally pls download the code or watch the video to show the website in use.</p>
+            <p>${para}</p>
         </div>
     </div>
     
