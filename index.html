@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
     <script src="https://kit.fontawesome.com/304058e96a.js" crossorigin="anonymous"></script>
     <title>Ceejay's Portfolio</title>
 </head>
@@ -24,6 +23,21 @@
     --teal: #1f6f78;
     --navy: #17324d;
     --shadow: 0 18px 45px rgba(23, 50, 77, 0.12);
+    --link: rgb(110, 4, 131);
+}
+
+:root[data-theme="dark"]{
+    --ink: #edf2f1;
+    --muted: #b8c5c2;
+    --paper: #17212b;
+    --surface: #24333b;
+    --line: #42545b;
+    --navy: #dce8e5;
+    --shadow: 0 18px 45px rgba(0, 0, 0, 0.3);
+    --link: rgb(201, 222, 240); 
+}
+a{
+    color: var(--link);
 }
 
 body{
@@ -33,6 +47,10 @@ body{
     font-family: "Trebuchet MS", "Segoe UI", sans-serif;
     font-size: 1rem;
     line-height: 1.6;
+}
+
+body.fullscreen-open{
+    overflow: hidden;
 }
 
 h1, h2, h3{
@@ -436,6 +454,66 @@ body{
     gap: 10px;
 }
 
+.settings-control{
+    position: relative;
+}
+
+.settings-button{
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    min-height: 44px;
+    padding: 8px 0;
+    border: 0;
+    background: transparent;
+    color: var(--navy);
+    cursor: pointer;
+    font: inherit;
+}
+
+.settings-button:focus-visible,
+.settings-menu select:focus-visible{
+    outline: 3px solid var(--accent);
+    outline-offset: 3px;
+}
+
+.settings-menu{
+    position: absolute;
+    top: calc(100% + 10px);
+    right: 0;
+    z-index: 11;
+    display: grid;
+    gap: 8px;
+    min-width: 170px;
+    padding: 14px;
+    color: var(--ink);
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    text-align: left;
+}
+
+.settings-menu[hidden]{
+    display: none;
+}
+
+.settings-menu label{
+    color: var(--muted);
+    font-size: 0.85rem;
+    font-weight: 700;
+}
+
+.settings-menu select{
+    min-height: 38px;
+    padding: 6px 8px;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    background: var(--paper);
+    color: var(--ink);
+    font: inherit;
+}
+
 .gateway-menu{
     top: calc(100% + 16px);
     left: 50%;
@@ -464,7 +542,7 @@ body{
 
 .gateway-menu select{
     border: 1px solid var(--line);
-    background: #fff;
+    background: var(--surface);
     color: var(--ink);
 }
 
@@ -583,7 +661,7 @@ main{
     align-self: center;
     min-height: 430px;
     padding: clamp(24px, 5vw, 56px);
-    background: rgba(255, 255, 255, 0.82);
+    background: color-mix(in srgb, var(--surface) 88%, transparent);
     gap: clamp(28px, 7vw, 88px);
 }
 
@@ -744,7 +822,7 @@ main{
     width: min(100%, 900px);
     padding: clamp(12px, 3vw, 24px);
     overflow: hidden;
-    background: rgba(255, 255, 255, 0.82);
+    background: color-mix(in srgb, var(--surface) 88%, transparent);
 }
 
 .project-video{
@@ -782,7 +860,7 @@ td{
 
 table{
     text-align: center;
-    width: 35%;
+    width: min(100%, 520px);
 }
 
 .images-conc{
@@ -790,7 +868,7 @@ table{
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 20px;
+    gap: clamp(14px, 3vw, 20px);
     width: min(100%, 900px);
     margin: 0 auto;
     padding: 20px 0;
@@ -828,10 +906,12 @@ table{
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    gap:30px;
+    width: 100%;
+    gap: clamp(10px, 4vw, 30px);
 }
 
 .image-conc-options button{
+    flex: 0 0 50px;
     width: 50px;
     height:50px;
     border-radius: 50%;
@@ -854,22 +934,224 @@ table{
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 100vw;
-    height: 100vh;
-    padding: 24px;
+    width: 100%;
+    height: 100dvh;
+    padding: max(16px, env(safe-area-inset-top)) max(16px, env(safe-area-inset-right)) max(16px, env(safe-area-inset-bottom)) max(16px, env(safe-area-inset-left));
     background: rgba(10, 14, 18, 0.72);
     backdrop-filter: blur(4px);
 }
 
-.full-screen-img img{
+.fullscreen-content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    width: min(100%, 1100px);
+    max-height: 100%;
+    min-width: 0;
+}
+
+.fullscreen-image{
     display: block;
-    max-width: min(90vw, 1100px);
-    max-height: 90vh;
+    max-width: 100%;
+    max-height: min(74dvh, 760px);
     width: auto;
     height: auto;
     object-fit: contain;
+    cursor: grab;
+    touch-action: none;
+    transform-origin: center center;
+    transition: transform 0.2s ease;
     border-radius: 18px;
     box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+}
+
+.fullscreen-zoom-controls{
+    position: absolute;
+    top: max(24px, env(safe-area-inset-top));
+    left: max(24px, env(safe-area-inset-left));
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    border-radius: 10px;
+    background: rgba(10, 14, 18, 0.7);
+}
+
+.fullscreen-zoom-controls button{
+    min-width: 38px;
+    min-height: 36px;
+    padding: 4px 8px;
+    border: 0;
+    border-radius: 6px;
+    color: white;
+    background: transparent;
+    cursor: pointer;
+    font: inherit;
+    font-weight: 700;
+}
+
+.fullscreen-zoom-controls button:hover,
+.fullscreen-zoom-controls button:focus-visible{
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.zoom-reset{
+    min-width: 58px !important;
+    font-size: 0.85rem !important;
+}
+
+.fullscreen-close,
+.fullscreen-prev,
+.fullscreen-next{
+    position: absolute;
+    display: grid;
+    place-items: center;
+    width: 46px;
+    height: 46px;
+    border: 1px solid rgba(255, 255, 255, 0.45);
+    border-radius: 50%;
+    color: white;
+    background: rgba(10, 14, 18, 0.7);
+    cursor: pointer;
+    font-size: 1.5rem;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.fullscreen-close:hover,
+.fullscreen-prev:hover,
+.fullscreen-next:hover{
+    background: rgba(10, 14, 18, 0.95);
+    transform: scale(1.08);
+}
+
+.fullscreen-close{
+    top: 24px;
+    right: 24px;
+    font-size: 2rem;
+    line-height: 1;
+}
+
+.fullscreen-prev,
+.fullscreen-next{
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.fullscreen-prev:hover,
+.fullscreen-next:hover{
+    transform: translateY(-50%) scale(1.08);
+}
+
+.fullscreen-prev{
+    left: max(8px, min(6vw, 72px));
+}
+
+.fullscreen-next{
+    right: max(8px, min(6vw, 72px));
+}
+
+.fullscreen-thumbnails{
+    display: flex;
+    gap: 10px;
+    width: 100%;
+    max-width: 900px;
+    overflow-x: auto;
+    padding: 4px;
+}
+
+.fullscreen-thumbnail{
+    flex: 0 0 72px;
+    width: 72px;
+    height: 54px;
+    padding: 2px;
+    border: 2px solid transparent;
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.18);
+    cursor: pointer;
+}
+
+.fullscreen-thumbnail.is-selected{
+    border-color: white;
+}
+
+.fullscreen-thumbnail img{
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 3px;
+}
+
+@media (max-width: 600px){
+    .full-screen-img{
+        padding: max(12px, env(safe-area-inset-top)) max(12px, env(safe-area-inset-right)) max(12px, env(safe-area-inset-bottom)) max(12px, env(safe-area-inset-left));
+    }
+
+    .fullscreen-image{
+        max-width: calc(100% - 56px);
+        max-height: 62dvh;
+        border-radius: 10px;
+    }
+
+    .fullscreen-content{
+        gap: 12px;
+    }
+
+    .fullscreen-close{
+        top: 12px;
+        right: 12px;
+    }
+
+    .fullscreen-zoom-controls{
+        top: max(12px, env(safe-area-inset-top));
+        left: max(12px, env(safe-area-inset-left));
+    }
+
+    .fullscreen-prev,
+    .fullscreen-next{
+        top: 42%;
+    }
+
+    .fullscreen-prev{
+        left: max(8px, env(safe-area-inset-left));
+    }
+
+    .fullscreen-next{
+        right: max(8px, env(safe-area-inset-right));
+    }
+
+    .fullscreen-thumbnail{
+        flex-basis: 64px;
+        width: 64px;
+        height: 48px;
+    }
+}
+
+.fullscreen-image.is-panning{
+    cursor: grabbing;
+    transition: none;
+}
+
+:root[data-theme="dark"] body{
+    background:
+        radial-gradient(circle at 12% 8%, rgba(231, 111, 81, 0.12), transparent 28rem),
+        linear-gradient(180deg, #202d35 0%, var(--paper) 48%, #11191f 100%);
+}
+
+:root[data-theme="dark"] .top-nav{
+    background: rgba(23, 33, 43, 0.94);
+    border-bottom-color: var(--line);
+}
+
+:root[data-theme="dark"] .gateway-menu{
+    background: var(--surface);
+    border-color: var(--line);
+}
+
+:root[data-theme="dark"] td{
+    border-color: var(--line);
 }
 </style>
 <body>
@@ -888,7 +1170,7 @@ table{
                             <option value="task-manager">Task Manager Website</option>
                             <option value="festival">Festival Website</option>
                             <option value="clothes-store">Clothes Store</option>
-                            <option value="Calculator">Calculator</option>
+                            <option value="calculator">Calculator</option>
                         </select>
                         <a type="button" href="#task-manager" class="change-page">Visit</a>
                     </div>
@@ -900,10 +1182,18 @@ table{
                 </li>
             </ul>
         </div>
-        <div style="justify-content: end;">
-            <span>Settings</span>
-            <i class="fa-solid fa-gear"></i>
-            
+        <div class="settings-control">
+            <button class="settings-button" type="button" aria-label="Open settings" aria-expanded="false" aria-controls="settings-menu">
+                <span>Settings</span>
+                <i class="fa-solid fa-gear" aria-hidden="true"></i>
+            </button>
+            <div class="settings-menu" id="settings-menu" hidden>
+                <label for="theme-select">Theme</label>
+                <select id="theme-select">
+                    <option value="light">Light</option>
+                    <option value="dark">Dark</option>
+                </select>
+            </div>
         </div>
     </nav>
     <div class="side-nav-shell">
@@ -911,7 +1201,6 @@ table{
             <h2>Explore</h2>
             <nav>
                 <a href="#home">Home</a>
-            
                 <a href="#projects">Projects</a>
                 <a href="#contact">Contact</a>
             </nav>
@@ -950,8 +1239,6 @@ table{
         <section class="page-section" id="projects">
             <h1>Projects</h1>
             <p>Explore the projects I have built.</p>
-            
-        
         </section>
         <section class="page-section" id="contact">
             <h1>Contact</h1>
@@ -982,15 +1269,44 @@ function queryAll(l){
     return document.querySelectorAll(l)
 }
 
+const themeStorageKey = "portfolio-theme";
+const settingsButton = query(".settings-button");
+const settingsMenu = query(".settings-menu");
+const themeSelect = query("#theme-select");
+
+function setTheme(theme) {
+    const selectedTheme = theme === "dark" ? "dark" : "light";
+    document.documentElement.dataset.theme = selectedTheme;
+    themeSelect.value = selectedTheme;
+    localStorage.setItem(themeStorageKey, selectedTheme);
+}
+
+setTheme(localStorage.getItem(themeStorageKey) || "light");
+
+settingsButton.addEventListener("click", () => {
+    const isOpen = !settingsMenu.hidden;
+    settingsMenu.hidden = isOpen;
+    settingsButton.setAttribute("aria-expanded", String(!isOpen));
+});
+
+themeSelect.addEventListener("change", event => setTheme(event.target.value));
+
+document.addEventListener("click", event => {
+    if (!settingsMenu.contains(event.target) && !settingsButton.contains(event.target)) {
+        settingsMenu.hidden = true;
+        settingsButton.setAttribute("aria-expanded", "false");
+    }
+});
+
 
 
 const gateway_data= {
-    current: "task-manager", 
+    current: "TaskManager", 
     links: {
         "task-manager": "task-manager",
         "festival": "festival-sec",
         "clothes-store": "Clothes-shop",
-        "Calculator": "Calculator-app"
+        "calculator": "Calculator-app"
     }
 }
 
