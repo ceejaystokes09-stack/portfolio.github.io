@@ -13,8 +13,8 @@ function queryAll(l){
 
 const gateway_data= {
     current: "TaskManager", 
-    options:["TaskManager","FestivalWeb", "Clothes", "Calculator"],
-    links: ["task-manager","festival-sec","Clothes-shop", "Calculator-app"]
+    options:["TaskManager","FestivalWeb", "Clothes", "Calculator","Weather app", "Finance app v1"],
+    links: ["task-manager","festival-sec","Clothes-shop", "Calculator-app", "Weather-app", "Finance-no-db"]
 }
 
 function handleGatewayChange(event){
@@ -163,7 +163,19 @@ const WEATHER = {
         website:"https://ceejaystokes09-stack.github.io/weatherApp.github.io/" ,
 }
 
-const projects = [TASK_MANAGER,FESTIVAL, CLOTHES_STORE, CALCULATOR, WEATHER]
+const FINANCE_NO_DB = {
+        id:"Finance-no-db",
+        title: "Budgeting app - No DataBase ",
+        github_link: "https://github.com/ceejaystokes09-stack/BudgetApp.github.io" ,
+        asset_folder: "assets/finance/",
+        video_link: "clip.mp4",
+        title_options: ["Home page - Light Theme", "Home page - Dark Theme", "Group display - Light Theme", "Group display - Dark Theme", "New task - Light Theme", "New task - Dark theme", "Groups in-side a Group - Light Theme", "Groups in-side a Group - Dark Theme"],
+        image_options: ["assets/finance/Home-task-light.png","assets/finance/Home-task-dark.png", "assets/finance/Home-group-light.png" , "assets/finance/Home-group-dark.png", "assets/finance/New-task-light.png", "assets/finance/New-task-dark.png", "assets/finance/Group-in-Group-showcase-light.png", "assets/finance/Group-in-Group-showcase.png"],
+        alt:["Home page light", "Home page dark", "Groups light", "Groups dark", "new task light", "new task dark", "group in group light", "group in group dark" ],
+        website:"https://ceejaystokes09-stack.github.io/BudgetApp.github.io/" ,
+}
+
+const projects = [TASK_MANAGER,FESTIVAL, CLOTHES_STORE, CALCULATOR, WEATHER, FINANCE_NO_DB]
 
 function changeImage(change, obj) {
     if (!obj) return;
