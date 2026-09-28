@@ -151,11 +151,23 @@ const CALCULATOR = {
     website:"https://ceejaystokes09-stack.github.io/calculator.github.io/",
 }
 
-const projects = [TASK_MANAGER,FESTIVAL, CLOTHES_STORE, CALCULATOR]
+const WEATHER = {
+        id:"Weather-app",
+        title: "Weather App - API Testing",
+        github_link: "https://github.com/ceejaystokes09-stack/weatherApp.github.io" ,
+        asset_folder: "assets/Weather/",
+        video_link: "clip.mp4",
+        title_options: ["Weather App - Open Page", "Weather App - Weather Navigation"],
+        image_options: ["assets/Weather/Open-Ui.png", "assets/Weather/Open-Ui-weather-Nav.png"],
+        alt:["Open UI", "Weather Navigation"],
+        website:"https://ceejaystokes09-stack.github.io/weatherApp.github.io/" ,
+}
+
+const projects = [TASK_MANAGER,FESTIVAL, CLOTHES_STORE, CALCULATOR, WEATHER]
 
 function changeImage(change, obj) {
     if (!obj) return;
-    console.log(obj)
+    //console.log(obj)
 
     const images = queryAll(".images-conc img");
     const img = [...images].find(image => {
