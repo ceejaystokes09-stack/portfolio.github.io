@@ -345,9 +345,9 @@ projects.forEach(obj=>{
 
 function createProjects_UI(obj){
     const div = document.createElement("div")
-    let para ="A video showing how the website works and function the key functionality of the website. The website isnt uploaded live, so if u want to see the website personally pls download the code or watch the video to show the website in use." ; 
+    let para ="A video showing how the website works and function the key functionality of the website. The website isnt uploaded live, so if u want to see the website personally please download the code or watch the video to show the website in use." ; 
     if (Object.hasOwn(obj,"website")){
-        para = `A video showing how the website works and function the key functionality of the website. The website is live, so if u want to see the website personally pls download the code or <a href=${obj.website}>Click Here</a>.`
+        para = `A video showing how the website works and function the key functionality of the website. The website is live, so if u want to see the website personally please download the code or <a href=${obj.website}>Click Here</a>.`
     }
     div.id = obj.id; 
     div.innerHTML = `
