@@ -109,7 +109,8 @@ function removeDOM(el){
 
 const TASK_MANAGER = {
     id:"task-manager",
-    title: "Task Manager website", 
+    title: "Task Manager website",
+    desc: 'This website was made as a challenge with a close friend of mine, the purpose was basically "Who can make the best Task Mangager Website?" I personally went down the backend route, and the simplistic UI, i was basically just trying to relearn SQL and Flask all over again, so for me this ws more of a practice website.' , 
     github_link:"https://github.com/ceejaystokes09-stack/task-manager-",
     asset_folder: "assets/Task-manager/",
     video_link:"website-showcase.mp4" ,
@@ -120,6 +121,7 @@ const TASK_MANAGER = {
 const FESTIVAL = {
     id:"festival-sec", 
     title: "Festival website", 
+    desc: `This website was made during a college initial assessment, the point was just to prove that i can do the basics of css, html and js, now because I see myself as a confident programmer I went a bit above and beyond and worked on the logic for an account system and was me just showing off a little to be honest.`,
     github_link:"https://github.com/ceejaystokes09-stack/Festival-website",
     asset_folder: "assets/Festival/" ,
     video_link: "Festival-open-clip.mp4" ,
@@ -131,6 +133,7 @@ const FESTIVAL = {
 const CLOTHES_STORE={
     id:"Clothes-shop",
     title: "Clothes Shop website",
+    desc: `This website holds a very special place in my heart, because it was my very first website EVER. I didnt know html, css or js but i still decided to add a flask backend, becuase I like to push myself to my limits. This was designed heavily with <a href="https://getbootstrap.com/" target="_blank" rel="noopener">Bootstrap</a>.` ,
     github_link:"https://github.com/ceejaystokes09-stack/clothes-store", 
     asset_folder: "assets/Clothes-store/",
     video_link: "clip.mp4",
@@ -142,6 +145,7 @@ const CLOTHES_STORE={
 const CALCULATOR = {
     id:"Calculator-app",
     title: "Basic Calculator Website",
+    desc:`This website is kind of basic in my opinion, it was me just practicing html a bit more and working on asseccability as u can use the keyboard to type your answers.` , 
     github_link:"https://github.com/ceejaystokes09-stack/calculator.github.io",
     asset_folder:"assets/Calculator/",
     video_link:"clip.mp4",
@@ -154,6 +158,7 @@ const CALCULATOR = {
 const WEATHER = {
         id:"Weather-app",
         title: "Weather App - API Testing",
+        desc: `This was the hardest website that ive had to make as of September 2026, this website was me really trying to learn the use cases and importance of API's and how to manipulate the data to make a website, in this case a weather app. `,
         github_link: "https://github.com/ceejaystokes09-stack/weatherApp.github.io" ,
         asset_folder: "assets/Weather/",
         video_link: "clip.mp4",
@@ -166,6 +171,7 @@ const WEATHER = {
 const FINANCE_NO_DB = {
         id:"Finance-no-db",
         title: "Budgeting app - No DataBase ",
+        desc: `This website is part of a 2 part website bundle that im currently working on as of October 1st 2026, this has been made using <a href="https://react.dev/" target="_blank" rel="noopener" >React</a> and the only reason i didnt add a backedn is so I can upload this to github pages, so all data isnt stored safely but is stored and can be recycled.` ,
         github_link: "https://github.com/ceejaystokes09-stack/BudgetApp.github.io" ,
         asset_folder: "assets/finance/",
         video_link: "clip.mp4",
@@ -361,7 +367,13 @@ function createProjects_UI(obj){
             <p>${para}</p>
         </div>
     </div>
-    
+
+    <div class="box">
+        <h2 style="text-align: center">Description</h2>
+        <div class="center">
+            <p style="text-align:center; margin-inline:auto; width:100%;">${obj.desc}</p>
+        </div>
+    </div>
     <div class="images-conc box">
         
         <h4>${obj.title_options[0]}</h4>
