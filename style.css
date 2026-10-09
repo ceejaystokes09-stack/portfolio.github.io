@@ -260,7 +260,7 @@ p{
     min-height: calc(100vh - 50px);
     padding: 30px 20px;
     background: #242424;
-    color: #fff;
+    color: var(--ink);
 }
 
 .side-nav h2{
@@ -274,7 +274,7 @@ p{
 }
 
 .side-nav a{
-    color: #fff;
+    color: var(--ink);
     text-decoration: none;
     padding: 8px 10px;
     border-radius: 6px;
@@ -589,7 +589,8 @@ body{
     width: min(280px, calc(100vw - 32px));
     min-height: calc(100vh - 68px);
     padding: 32px 22px;
-    background: var(--navy);
+    background: var(--muted);
+    color: var(--ink);
     box-shadow: 12px 0 32px rgba(23, 50, 77, 0.2);
 }
 
@@ -795,9 +796,9 @@ main{
 
 .skills-list li:hover{
     transform: translateY(-2px);
-    box-shadow: 4px 6px 18px -5px rgba(9,201,86,0.95);
-    -webkit-box-shadow: 4px 6px 18px -5px rgba(9,201,86,0.95);
-    -moz-box-shadow: 4px 6px 18px -5px rgba(9,201,86,0.95);
+    box-shadow: 4px 6px 18px -5px rgba(36, 83, 69, 0.95);
+    -webkit-box-shadow: 4px 6px 18px -5px rgba(36, 83, 69, 0.95);
+    -moz-box-shadow: 4px 6px 18px -5px rgba(36, 83, 69, 0.95);
 }
 
 @media (max-width: 700px){
@@ -1260,4 +1261,21 @@ table{
 
 :root[data-theme="dark"] td{
     border-color: var(--line);
+}
+
+:root[data-theme="dark"] .side-nav{
+    background: var(--surface);
+}
+
+:root[data-theme="dark"] .side-nav h2{
+    color: var(--ink);
+}
+
+:root[data-theme="dark"] .side-nav a{
+    color: var(--muted);
+}
+
+:root[data-theme="dark"] .side-nav a:hover,
+:root[data-theme="dark"] .side-nav a:focus-visible{
+    background: #344b52;
 }
