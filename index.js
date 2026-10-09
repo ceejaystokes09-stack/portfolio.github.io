@@ -338,6 +338,22 @@ const FINANCE_DB = {
   ],
 };
 
+const CURRENCY_CONVERTER = {
+  id: "Currency-converter",
+  title: "Currency Converter",
+  desc: `This is a simple currency converter app. It allows users to convert between different currencies.`,
+  github_link: "https://github.com/ceejaystokes09-stack/Money-converter-",
+  asset_folder: "assets/converter/",
+  video_link: "clip.mp4",
+  title_options: ["Home page", "Home page - Showing converted UI"],
+  image_options: [
+    "assets/converter/Home-page.png",
+    "assets/converter/Home-page-converter.png",
+  ],
+  alt: ["Home Page", "Home page - Showing converted UI with amount"],
+  website: "https://ceejaystokes09-stack.github.io/Money-converter-/",
+};
+
 const projects = [
   TASK_MANAGER,
   FESTIVAL,
@@ -345,7 +361,8 @@ const projects = [
   CALCULATOR,
   WEATHER,
   FINANCE_NO_DB,
-  FiNANCE_DB,
+  FINANCE_DB,
+  CURRENCY_CONVERTER,
 ];
 
 function changeImage(change, obj) {
