@@ -1,170 +1,291 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://kit.fontawesome.com/304058e96a.js" crossorigin="anonymous"></script>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      src="https://kit.fontawesome.com/304058e96a.js"
+      crossorigin="anonymous"
+    ></script>
     <title>Ceejay's Portfolio</title>
-    <link rel="stylesheet" href="style.css">
-</head>
+    <link rel="stylesheet" href="style.css" />
+  </head>
 
-<body>
+  <body>
     <nav class="top-nav">
-        <div>
-            <h3>Ceejay's Portfolio</h3>
-        </div>
-        <div id="nav-center">
-            <ul>
-                <li class="mega-link">
-                    <i class="fa-solid fa-sliders"></i>
-                    <span>Gateways</span> 
-                    <div class="gateway-menu">
-                        <h2>Select a page to visit:</h2>
-                        <select aria-label="Select a gateway">
-                            <option value="task-manager">Task Manager Website</option>
-                            <option value="festival">Festival Website</option>
-                            <option value="clothes-store">Clothes Store</option>
-                            <option value="calculator">Calculator</option>
-                        </select>
-                        <a type="button" href="#task-manager" class="change-page">Visit</a>
-                    </div>
-                </li>
-                <li>
-                    <a class="fa-brands fa-github github-link" href="https://github.com/ceejaystokes09-stack/" target="_blank" rel="noopener noreferrer" aria-label="Visit Ceejay's GitHub profile"><span>Github</span></a>
-                    
-                </li>
-            </ul>
-        </div>
-        <div class="settings-control">
-            <button class="settings-button" type="button" aria-label="Open settings" aria-expanded="false" aria-controls="settings-menu">
-                <span>Settings</span>
-                <i class="fa-solid fa-gear" aria-hidden="true"></i>
-            </button>
-            <div class="settings-menu" id="settings-menu" hidden>
-                <label for="theme-select">Theme</label>
-                <select id="theme-select">
-                    <option value="light">Light</option>
-                    <option value="dark">Dark</option>
-                </select>
+      <div>
+        <h3>Ceejay's Portfolio</h3>
+      </div>
+      <div id="nav-center">
+        <ul>
+          <li class="mega-link">
+            <i class="fa-solid fa-sliders"></i>
+            <span>Gateways</span>
+            <div class="gateway-menu">
+              <h2>Select a page to visit:</h2>
+              <select aria-label="Select a gateway">
+                <option value="task-manager">Task Manager Website</option>
+                <option value="festival">Festival Website</option>
+                <option value="clothes-store">Clothes Store</option>
+                <option value="calculator">Calculator</option>
+              </select>
+              <a type="button" href="#task-manager" class="change-page"
+                >Visit</a
+              >
             </div>
+          </li>
+          <li>
+            <a
+              class="fa-brands fa-github github-link"
+              href="https://github.com/ceejaystokes09-stack/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Visit Ceejay's GitHub profile"
+              ><span>Github</span></a
+            >
+          </li>
+        </ul>
+      </div>
+      <div class="settings-control">
+        <button
+          class="settings-button"
+          type="button"
+          aria-label="Open settings"
+          aria-expanded="false"
+          aria-controls="settings-menu"
+        >
+          <span>Settings</span>
+          <i class="fa-solid fa-gear" aria-hidden="true"></i>
+        </button>
+        <div class="settings-menu" id="settings-menu" hidden>
+          <label for="theme-select">Theme</label>
+          <select id="theme-select">
+            <option value="light">Light</option>
+            <option value="dark">Dark</option>
+          </select>
         </div>
+      </div>
     </nav>
     <div class="side-nav-shell">
-        <aside class="side-nav" id="side-nav" aria-label="Page navigation">
-            <h2>Explore</h2>
-            <nav>
-                <a href="#home">Home</a>
-                <a href="#skills">Skills</a>
-                <a href="#projects">Projects</a>
-                <a href="#contact">Contact</a>
-            </nav>
-        </aside>
-        <button class="open-side" type="button" aria-label="Open page navigation" aria-controls="side-nav" aria-expanded="false">
-            <i class="fa-solid fa-bars" aria-hidden="true"></i>
-            <i class="fa-solid fa-xmark" aria-hidden="true"></i>
-        </button>
+      <aside class="side-nav" id="side-nav" aria-label="Page navigation">
+        <h2>Explore</h2>
+        <nav>
+          <a href="#home">Home</a>
+          <a href="#skills">Skills</a>
+          <a href="#projects">Projects</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </aside>
+      <button
+        class="open-side"
+        type="button"
+        aria-label="Open page navigation"
+        aria-controls="side-nav"
+        aria-expanded="false"
+      >
+        <i class="fa-solid fa-bars" aria-hidden="true"></i>
+        <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+      </button>
     </div>
     <main>
-        <section class="page-section" id="home">
-            <div>
-                <h1>Home</h1>
-                </div>
-            <div class="hero box">
-                <div class="hero-image">
-                    <div class="circle big"></div>
-                    <ul>
-                        <li>Ceejay Stokes</li>
-                        <li>31/05/2009</li>
-                        <li>Manchester, Bolton, England, UK</li>
-                        <li>8 GCSE's, 1 T-Level</li>
-                    </ul>
-                </div>
-                <div class="hero-details">
-                    <p>
+      <section class="page-section" id="home">
+        <div>
+          <h1 class="title">Home</h1>
+        </div>
+        <div class="hero box">
+          <div class="hero-image">
+            <div class="circle big"></div>
+            <ul>
+              <li>Ceejay Stokes</li>
+              <li>31/05/2009</li>
+              <li>Manchester, Bolton, England, UK</li>
+              <li>8 GCSE's, 1 T-Level</li>
+            </ul>
+          </div>
+          <div class="hero-details">
+            <p>
+              My name is Ceejay Stokes, I grew up in Bolton, Manchester. Im
+              currently studying at Bolton College in a course of
+              <a
+                href="https://qualifications.pearson.com/en/qualifications/t-levels/digital-production-design-and-development.html"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Digital, Design, Development & Production T-Level L3</a
+              >. My aspirations are centered around the digital industry, with
+              my main focus around Full stack development, or Game development.
+              I recently finished my first year of my T-level course and got a
+              <strong>B</strong> in my exams. In 2025 I finished High School at
+              <a
+                href="https://www.harper-green.bolton.sch.uk/"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Haper Green School</a
+              >
+              my grades were as followed:
+            </p>
+            <ul class="skills-list width-full">
+              <li>Maths: 7</li>
+              <li>English Literature: 7</li>
+              <li>Science: 7/7</li>
+              <li>English Language: 6</li>
+              <li>Geography: 6</li>
+              <li>Computer Science: 6</li>
+              <li>Hospitality & catering: L2M</li>
+              <li>Art: 4</li>
+            </ul>
+            <!-- <p>
                     My name is Ceejay Stokes, i grew up and was raised in Manchester, Bolton, UK. 
                     I'm currently in college studying a coarse on website development and will be enterring university later in 2027.
                     My aspiration's in life include doing something digital related, im hoping to be either a full stack web developer or a games programmer. 
                     The main areas of game development im interested in is a "physics engineer in a 3D environment in real time", a "destruction physics programmer in a 3D environment in real time".
-                    </p>
-                </div>
-                
+                    </p> -->
+          </div>
+        </div>
+      </section>
+      <section class="page-section" id="skills">
+        <h1 class="title">Skills</h1>
+        <div class="skills-layout">
+          <figure class="skills-image-frame">
+            <div class="skills-image-placeholder" aria-hidden="true">
+              <img
+                class="skills-photo"
+                src="assets/static-templates/programming-languages-image.png"
+                alt="programming languages representation"
+              />
             </div>
-        </section>
-        <section class="page-section" id="skills">
-            <h1>Skills</h1>
-            <div class="skills-layout">
-                <figure class="skills-image-frame">
-                    <div class="skills-image-placeholder" aria-hidden="true">
-                        <img class="skills-photo" src="assets/static-templates/programming-languages-image.png" alt="programming languages representation">
-                    </div>
-                </figure>
-                <div class="skills-content">
-                    <h2>What I work with</h2>
-                    <ul class="skills-list">
-                        <a href="https://www.w3schools.com/js/" target="_blank" rel="noopener noreferrer"><li>Js</li></a>
-                        <a href="https://www.w3schools.com/html/" target="_blank" rel="noopener noreferrer"><li>Html</li></a>
-                        <a href="https://www.w3schools.com/css/" target="_blank" rel="noopener noreferrer"><li>Css</li></a>
-                        <a href="https://www.w3schools.com/python/" target="_blank" rel="noopener noreferrer"><li>Python</li></a>
-                        <a href="https://www.w3schools.com/sql/" target="_blank" rel="noopener noreferrer"><li>Sql</li></a>
-                        <a href="https://www.w3schools.com/typescript/" target="_blank" rel="noopener noreferrer"><li>Ts</li></a>
-                        <a href="https://www.w3schools.com/react/" target="_blank" rel="noopener noreferrer"><li>React</li></a>
-                        <a href="https://www.w3schools.com/c/" target="_blank" rel="noopener noreferrer"><li>C</li></a>
-                        <a href="https://www.w3schools.com/cs/" target="_blank" rel="noopener noreferrer"><li>C#</li></a>
-                        <a href="https://www.w3schools.com/java/" target="_blank" rel="noopener noreferrer"><li>Java</li></a>
-                        <a href="https://www.w3schools.com/cpp/" target="_blank" rel="noopener noreferrer"><li>C++</li></a>
-                        <a href="https://flask.palletsprojects.com/en/stable/quickstart/" target="_blank" rel="noopener noreferrer"><li>Flask</li></a>
-                    </ul>
-                </div>
+          </figure>
+          <div class="skills-content">
+            <h2>What I work with</h2>
+            <ul class="skills-list">
+              <a
+                href="https://www.w3schools.com/js/"
+                target="_blank"
+                rel="noopener noreferrer"
+                ><li>Js</li></a
+              >
+              <a
+                href="https://www.w3schools.com/html/"
+                target="_blank"
+                rel="noopener noreferrer"
+                ><li>Html</li></a
+              >
+              <a
+                href="https://www.w3schools.com/css/"
+                target="_blank"
+                rel="noopener noreferrer"
+                ><li>Css</li></a
+              >
+              <a
+                href="https://www.w3schools.com/python/"
+                target="_blank"
+                rel="noopener noreferrer"
+                ><li>Python</li></a
+              >
+              <a
+                href="https://www.w3schools.com/sql/"
+                target="_blank"
+                rel="noopener noreferrer"
+                ><li>Sql</li></a
+              >
+              <a
+                href="https://www.w3schools.com/typescript/"
+                target="_blank"
+                rel="noopener noreferrer"
+                ><li>Ts</li></a
+              >
+              <a
+                href="https://www.w3schools.com/react/"
+                target="_blank"
+                rel="noopener noreferrer"
+                ><li>React</li></a
+              >
+              <a
+                href="https://www.w3schools.com/c/"
+                target="_blank"
+                rel="noopener noreferrer"
+                ><li>C</li></a
+              >
+              <a
+                href="https://www.w3schools.com/cs/"
+                target="_blank"
+                rel="noopener noreferrer"
+                ><li>C#</li></a
+              >
+              <a
+                href="https://www.w3schools.com/java/"
+                target="_blank"
+                rel="noopener noreferrer"
+                ><li>Java</li></a
+              >
+              <a
+                href="https://www.w3schools.com/cpp/"
+                target="_blank"
+                rel="noopener noreferrer"
+                ><li>C++</li></a
+              >
+              <a
+                href="https://flask.palletsprojects.com/en/stable/quickstart/"
+                target="_blank"
+                rel="noopener noreferrer"
+                ><li>Flask</li></a
+              >
+            </ul>
+          </div>
+        </div>
+        <section><span></span></section>
+        <div class="skills-layout">
+          <figure class="skills-image-frame">
+            <div class="skills-image-placeholder" aria-hidden="true">
+              <img
+                class="skills-photo"
+                src="assets/static-templates/life-skills-image.jpg"
+                alt="Life skills representation"
+              />
             </div>
-            <section><span></span></section>
-            <div class="skills-layout">
-                <figure class="skills-image-frame">
-                    <div class="skills-image-placeholder" aria-hidden="true">
-                        <img class="skills-photo" src="assets/static-templates/life-skills-image.jpg" alt="Life skills representation">
-                    </div>
-                </figure>
-                <div class="skills-content">
-                    <h2>Skills I Know</h2>
-                    <ul class="skills-list">
-                        <li>Time Management</li>
-                        <li>Team work</li>
-                        <li>Word</li>
-                        <li>Excel</li>
-                        <li>Powerpoint</li>
-                        <li>Multi tasking</li>
-                        <li>Communication</li>
-                        <li>Independency</li>
-                        <li>Hardware knowledge</li>
-                        <li>Problem-solving</li>
-                        <li>Leadership</li>
-                        <li>Critical thinking</li>
-                        <li>Upselling</li>
-                        <li>Resilience</li>
-                        <li>Planning</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-        <section class="page-section" id="projects">
-            <h1>Projects</h1>
-            <p>Explore the projects I have built.</p>
-        </section>
-        <section class="page-section" id="contact">
-            <h1>Contact</h1>
-            <p>Get in touch with me.</p>
-            <div style="display: flex;align-items: center;justify-content: center;">
-                <table>
-                    <thead>
-                        <td><i class="fa-solid fa-envelope"></i>Email</td>
-                    </thead>
-                    <tbody>
-                        <td>ceejay.stokes09@gmail.com</td>
-                    </tbody>
-                </table>
-            </div>
-        </section>
+          </figure>
+          <div class="skills-content">
+            <h2>Skills I Know</h2>
+            <ul class="skills-list">
+              <li>Time Management</li>
+              <li>Team work</li>
+              <li>Word</li>
+              <li>Excel</li>
+              <li>Powerpoint</li>
+              <li>Multi tasking</li>
+              <li>Communication</li>
+              <li>Independency</li>
+              <li>Hardware knowledge</li>
+              <li>Problem-solving</li>
+              <li>Leadership</li>
+              <li>Critical thinking</li>
+              <li>Upselling</li>
+              <li>Resilience</li>
+              <li>Planning</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+      <section class="page-section" id="projects">
+        <h1 class="title">Projects</h1>
+        <p>Explore the projects I have built.</p>
+      </section>
+      <section class="page-section centerY" id="contact">
+        <h1 class="title">Contact</h1>
+        <p>Get in touch with me.</p>
+        <div
+          style="display: flex; align-items: center; justify-content: center"
+        >
+          <table>
+            <thead>
+              <td><i class="fa-solid fa-envelope"></i>Email</td>
+            </thead>
+            <tbody>
+              <td>ceejay.stokes09@gmail.com</td>
+            </tbody>
+          </table>
+        </div>
+      </section>
     </main>
-    
-</body>
-<script src="index.js"></script>
+  </body>
+  <script src="index.js"></script>
 </html>

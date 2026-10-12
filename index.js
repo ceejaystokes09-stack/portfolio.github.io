@@ -561,7 +561,7 @@ function createProjects_UI(obj) {
   let para =
     "A video showing how the website works and function the key functionality of the website. The website isnt uploaded live, so if u want to see the website personally please download the code or watch the video to show the website in use.";
   if (Object.hasOwn(obj, "website")) {
-    para = `A video showing how the website works and function the key functionality of the website. The website is live, so if u want to see the website personally please download the code or <a href=${obj.website}>Click Here</a>.`;
+    para = `A video showing how the website works and function the key functionality of the website. The website is live, so if u want to see the website personally please download the code or <a href=${obj.website} target="_blank" rel="noopener">Click Here</a>.`;
   }
   div.id = obj.id;
   div.innerHTML = `
