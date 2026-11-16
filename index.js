@@ -9,51 +9,6 @@ function queryAll(l) {
   return document.querySelectorAll(l);
 }
 
-const gateway_data = {
-  current: "TaskManager",
-  options: [
-    "TaskManager",
-    "FestivalWeb",
-    "Clothes",
-    "Calculator",
-    "Weather app",
-    "Finance app v1",
-    "Finance app - DataBase",
-  ],
-  links: [
-    "task-manager",
-    "festival-sec",
-    "Clothes-shop",
-    "Calculator-app",
-    "Weather-app",
-    "Finance-no-db",
-    "Finance-db",
-  ],
-};
-
-function handleGatewayChange(event) {
-  const selectedGateway = event.target.value;
-
-  let num = 0;
-  queryAll(".mega-link option").forEach((element) => {
-    if (element.value === selectedGateway) {
-      gateway_data.current = gateway_data.options[num];
-    }
-    num++;
-  });
-  //console.log(selectedGateway)
-  //console.log(gateway_data)
-}
-
-function visitPage(e) {
-  const area = gateway_data.options.indexOf(gateway_data.current);
-  e.target.href = `#${gateway_data.links[area]}`;
-  return;
-}
-
-query(".mega-link a").addEventListener("click", visitPage);
-query(".mega-link select").addEventListener("change", handleGatewayChange);
-
 const sideToggle = query(".open-side");
 const sideNav = query(".side-nav");
 const sideNavShell = query(".side-nav-shell");
@@ -364,6 +319,21 @@ const projects = [
   FINANCE_DB,
   CURRENCY_CONVERTER,
 ];
+
+const gatewaySelect = query(".mega-link select");
+const gatewayLink = query(".mega-link .change-page");
+
+projects.forEach(({ id, title }) => {
+  const option = document.createElement("option");
+  option.value = id;
+  option.textContent = title;
+  gatewaySelect.appendChild(option);
+});
+
+gatewayLink.href = `#${gatewaySelect.value}`;
+gatewaySelect.addEventListener("change", () => {
+  gatewayLink.href = `#${gatewaySelect.value}`;
+});
 
 function changeImage(change, obj) {
   if (!obj) return;
